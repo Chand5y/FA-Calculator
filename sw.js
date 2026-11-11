@@ -1,4 +1,4 @@
-const CACHE_NAME = 'fa-calc-v9';
+const CACHE_NAME = 'fa-calc-v10';
 const ASSETS = [
   './',
   './index.html',
