@@ -756,12 +756,11 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
     }
     .seg-invalid {
       color: #DC2626 !important;
-      text-decoration: underline wavy rgba(220, 38, 38, 0.45);
-      text-underline-offset: 4px;
+      text-decoration: none !important;
     }
     html.dark .seg-invalid {
       color: #F87171 !important;
-      text-decoration: underline wavy rgba(248, 113, 113, 0.5);
+      text-decoration: none !important;
     }
 
     /* Advanced Depth-of-Field Bokeh & Texture Blur for Background Geometric Motifs */
@@ -1782,7 +1781,7 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
       id="appVersionBadge" 
       class="px-2.5 py-1 rounded-lg text-xs sm:text-sm font-mono font-extrabold bg-fadv-ivory/90 dark:bg-fadv-forest/90 text-neutral-700 dark:text-neutral-200 border border-fadv-sandBorder dark:border-white/15 shadow-sm"
     >
-      v1.8.0
+      v1.8.1
     </span>
   </div>
 
@@ -1825,7 +1824,7 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
   </div>
 
   <script>
-    const APP_VERSION = '1.8.0';
+    const APP_VERSION = '1.8.1';
     const MIN_UPDATE_DURATION_MS = 5000;
     let isDarkMode = false;
 
@@ -2003,16 +2002,35 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
           const dx = (hRect.left + hRect.width / 2) - (sRect.left + sRect.width / 2);
           const dy = (hRect.top + hRect.height / 2) - (sRect.top + sRect.height / 2);
           // Match exact width ratio so the landed title is pixel-identical in width & height to #mainHeaderTitle
-          const scale = hRect.width / sRect.width;
+          const s = hRect.width / sRect.width;
 
-          void splashTitle.offsetWidth;
-          splashTitle.style.transition = 'transform 0.85s cubic-bezier(0.22, 1, 0.36, 1)';
           splashTitle.style.transformOrigin = 'center center';
-          splashTitle.style.transform = `translate3d(${dx.toFixed(2)}px, ${dy.toFixed(2)}px, 0) scale(${scale.toFixed(4)})`;
+
+          if (typeof splashTitle.animate === 'function') {
+            // Tactile damped spring physics: glides up, overshoots slightly with elastic squash/stretch,
+            // rebounds softly, and settles onto the exact pixel coordinates of #mainHeaderTitle!
+            const springAnim = splashTitle.animate([
+              { transform: 'translate3d(0px, 0px, 0) scale(1, 1)', offset: 0, easing: 'cubic-bezier(0.22, 1, 0.36, 1)' },
+              { transform: `translate3d(${(dx * 1.02).toFixed(2)}px, ${(dy - 8.5).toFixed(2)}px, 0) scale(${(s * 0.965).toFixed(4)}, ${(s * 1.045).toFixed(4)})`, offset: 0.56, easing: 'cubic-bezier(0.34, 1.56, 0.64, 1)' },
+              { transform: `translate3d(${(dx * 0.995).toFixed(2)}px, ${(dy + 4.2).toFixed(2)}px, 0) scale(${(s * 1.028).toFixed(4)}, ${(s * 0.975).toFixed(4)})`, offset: 0.75, easing: 'cubic-bezier(0.34, 1.56, 0.64, 1)' },
+              { transform: `translate3d(${dx.toFixed(2)}px, ${(dy - 1.4).toFixed(2)}px, 0) scale(${(s * 0.994).toFixed(4)}, ${(s * 1.008).toFixed(4)})`, offset: 0.90, easing: 'ease-out' },
+              { transform: `translate3d(${dx.toFixed(2)}px, ${dy.toFixed(2)}px, 0) scale(${s.toFixed(4)}, ${s.toFixed(4)})`, offset: 1 }
+            ], {
+              duration: 940,
+              fill: 'forwards'
+            });
+            springAnim.onfinish = () => {
+              splashTitle.style.transform = `translate3d(${dx.toFixed(2)}px, ${dy.toFixed(2)}px, 0) scale(${s.toFixed(4)})`;
+            };
+          } else {
+            void splashTitle.offsetWidth;
+            splashTitle.style.transition = 'transform 0.92s cubic-bezier(0.34, 1.48, 0.64, 1)';
+            splashTitle.style.transform = `translate3d(${dx.toFixed(2)}px, ${dy.toFixed(2)}px, 0) scale(${s.toFixed(4)})`;
+          }
         }
 
         // Simultaneously start unblurring the entire calculator UI (blur(18px) -> blur(0px))
-        // so the app comes into sharp focus at the exact moment "FA Calculator" settles into the header!
+        // so the app comes into sharp focus right as "FA Calculator" finishes its spring bounce!
         blurStages.forEach(el => {
           el.classList.add('app-ui-unblurring');
         });
@@ -2020,7 +2038,7 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
         if (splashIcon) splashIcon.classList.add('splash-icon-exit');
         if (backdrop) backdrop.classList.add('splash-fade-out');
 
-        // Seamless zero-jitter handoff right as the glide finishes decelerating
+        // Seamless zero-jitter handoff right as the spring bounce finishes settling
         setTimeout(() => {
           headerTitle.style.opacity = '1';
           splashTitle.style.transition = 'opacity 0.12s ease';
@@ -2035,7 +2053,7 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
               splash.style.display = 'none';
             }
           }, 120);
-        }, 840);
+        }, 940);
       }, 1900);
     }
 
