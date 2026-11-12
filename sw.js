@@ -1,6 +1,6 @@
 const ACTIVE_CACHE = 'fa-calc-active-v1';
 const STAGED_CACHE = 'fa-calc-staged-v1';
-const SW_VERSION = '1.5.0';
+const SW_VERSION = '1.6.0';
 const ASSETS = [
   './',
   './index.html',
@@ -14,10 +14,8 @@ self.addEventListener('install', (event) => {
     caches.open(ACTIVE_CACHE).then(async (activeCache) => {
       const existing = await activeCache.match('./index.html');
       if (!existing) {
-        // First-time installation: populate active cache immediately for 100% offline use
         await activeCache.addAll(ASSETS);
       } else {
-        // Update detected: download into STAGED_CACHE only so it NEVER auto-installs on next launch!
         const stagedCache = await caches.open(STAGED_CACHE);
         await stagedCache.addAll(ASSETS);
       }
