@@ -442,6 +442,29 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
     }
 
     /* ============================================================================ */
+    /* PROGRESSIVE UI UNBLUR AS "FA Calculator" GLIDES TO THE HEADER                */
+    /* ============================================================================ */
+    .app-ui-blur-stage {
+      filter: blur(18px);
+      -webkit-filter: blur(18px);
+      opacity: 0.32;
+      transition: filter 0.85s cubic-bezier(0.22, 1, 0.36, 1), -webkit-filter 0.85s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: filter, opacity;
+    }
+    .app-ui-blur-stage.app-ui-unblurring {
+      filter: blur(0px);
+      -webkit-filter: blur(0px);
+      opacity: 1;
+    }
+    .app-ui-blur-stage.app-ui-ready {
+      filter: none;
+      -webkit-filter: none;
+      opacity: 1;
+      transition: none;
+      will-change: auto;
+    }
+
+    /* ============================================================================ */
     /* LAUNCH & UPDATE SPLASH OVERLAY ("FirstAdvantage" -> "FA Calculator" + GLIDE) */
     /* ============================================================================ */
     #launchSplashOverlay {
@@ -457,13 +480,11 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
     #launchSplashBackdrop {
       position: absolute;
       inset: 0;
-      background: rgba(239, 230, 221, 0.84);
-      backdrop-filter: blur(24px) saturate(140%);
-      -webkit-backdrop-filter: blur(24px) saturate(140%);
-      transition: opacity 0.72s cubic-bezier(0.22, 1, 0.36, 1);
+      background: rgba(239, 230, 221, 0.72);
+      transition: opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1);
     }
     html.dark #launchSplashBackdrop {
-      background: rgba(7, 23, 16, 0.86);
+      background: rgba(7, 23, 16, 0.76);
     }
     #launchSplashBackdrop.splash-fade-out {
       opacity: 0;
@@ -477,29 +498,30 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
       object-fit: contain;
       filter: drop-shadow(0 22px 38px rgba(0, 166, 81, 0.32));
       animation: splashLogoSpringIn 0.72s cubic-bezier(0.34, 1.56, 0.64, 1);
-      transition: opacity 0.48s cubic-bezier(0.22, 1, 0.36, 1), transform 0.52s cubic-bezier(0.22, 1, 0.36, 1);
+      transition: opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1), transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
     }
     #launchSplashIcon.splash-icon-exit {
       opacity: 0 !important;
-      transform: scale(0.75) translateY(-20px) !important;
+      transform: scale(0.76) translateY(-22px) !important;
     }
 
-    /* Animated Title Morph Container under the Splash Icon
-       IMPORTANT: No "forwards" fill-mode on .splash-morph-row so JS transform glide is NEVER blocked by CSS animation! */
+    /* Animated Title Morph Container under the Splash Icon:
+       Matches the exact letter-spacing (-0.025em) and line-height (1) of #mainHeaderTitle
+       so when it glides to the header and settles, there is ZERO pixel shift or jitter! */
     .splash-morph-row {
       position: relative;
       z-index: 3;
-      margin-top: 16px;
+      margin-top: 18px;
       display: inline-flex;
       align-items: baseline;
       justify-content: center;
-      font-size: clamp(1.7rem, 3.2vw, 2.3rem);
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      line-height: 1.15;
+      font-size: clamp(1.75rem, 3.2vw, 2.35rem);
+      font-weight: 900;
+      letter-spacing: -0.025em;
+      line-height: 1;
       white-space: nowrap;
       color: #171717;
-      will-change: transform;
+      will-change: transform, opacity;
     }
     html.dark .splash-morph-row {
       color: #FFFFFF;
@@ -508,9 +530,8 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
     .morph-char-f,
     .morph-char-a {
       display: inline-block;
-      font-weight: 800;
+      font-weight: 900;
       color: #171717;
-      transition: font-weight 0.25s ease;
     }
     html.dark .morph-char-f,
     html.dark .morph-char-a {
@@ -525,7 +546,7 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
     }
     .fadv-i-dot {
       position: absolute;
-      top: 0.09em;
+      top: 0.04em;
       left: 50%;
       transform: translateX(-50%);
       width: 0.23em;
@@ -561,34 +582,34 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
     .morph-collapse-irst {
       display: inline-block;
       overflow: hidden;
-      vertical-align: bottom;
+      vertical-align: baseline;
       max-width: 2.8ch;
       opacity: 1;
       transform-origin: left center;
-      animation: collapseFirstPart 2.05s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      animation: collapseFirstPart 1.95s cubic-bezier(0.22, 1, 0.36, 1) forwards;
     }
 
     /* "dvantage" collapses to 0 width simultaneously */
     .morph-collapse-dvantage {
       display: inline-block;
       overflow: hidden;
-      vertical-align: bottom;
+      vertical-align: baseline;
       max-width: 8.6ch;
       opacity: 1;
       transform-origin: left center;
-      animation: collapseAdvantagePart 2.05s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      animation: collapseAdvantagePart 1.95s cubic-bezier(0.22, 1, 0.36, 1) forwards;
     }
 
     /* " Calculator" expands smoothly right after "FA" once "A" has slid next to "F" */
     .morph-expand-calc {
       display: inline-block;
       overflow: hidden;
-      vertical-align: bottom;
+      vertical-align: baseline;
       font-weight: 900;
       max-width: 0ch;
       opacity: 0;
       transform: translateX(-8px);
-      animation: expandCalculatorPart 2.05s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      animation: expandCalculatorPart 1.95s cubic-bezier(0.22, 1, 0.36, 1) forwards;
     }
 
     @keyframes collapseFirstPart {
@@ -630,7 +651,7 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
     }
 
     @keyframes expandCalculatorPart {
-      0%, 58% {
+      0%, 56% {
         max-width: 0ch;
         opacity: 0;
         transform: translateX(-8px);
@@ -663,6 +684,8 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
     }
     #launchSplashOverlay.updating-mode #launchSplashBackdrop {
       opacity: 1 !important;
+      backdrop-filter: blur(22px) saturate(140%);
+      -webkit-backdrop-filter: blur(22px) saturate(140%);
     }
     #launchSplashOverlay.updating-mode #launchSplashIcon {
       opacity: 1 !important;
@@ -679,6 +702,7 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
       animation: none !important;
       max-width: 0ch !important;
       opacity: 0 !important;
+      display: none !important;
     }
     #launchSplashOverlay.updating-mode .morph-expand-calc {
       animation: none !important;
@@ -810,37 +834,41 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
     }
 
     .tab-pill-indicator {
-      transition: transform 0.42s cubic-bezier(0.32, 1.25, 0.54, 1);
+      transition: transform 0.38s cubic-bezier(0.22, 1, 0.36, 1);
       will-change: transform;
     }
 
-    /* Directional Tab Slide Animations */
+    /* GPU-Composited Zero-Jitter Directional Tab Slide Animations */
     @keyframes tabSlideFromRight {
       0% {
         opacity: 0;
-        transform: translateX(70px);
+        transform: translate3d(56px, 0, 0);
       }
       100% {
         opacity: 1;
-        transform: translateX(0);
+        transform: translate3d(0, 0, 0);
       }
     }
     .animate-tab-from-right {
-      animation: tabSlideFromRight 0.4s cubic-bezier(0.25, 1, 0.4, 1) forwards;
+      will-change: transform, opacity;
+      backface-visibility: hidden;
+      animation: tabSlideFromRight 0.36s cubic-bezier(0.22, 1, 0.36, 1) forwards;
     }
 
     @keyframes tabSlideFromLeft {
       0% {
         opacity: 0;
-        transform: translateX(-70px);
+        transform: translate3d(-56px, 0, 0);
       }
       100% {
         opacity: 1;
-        transform: translateX(0);
+        transform: translate3d(0, 0, 0);
       }
     }
     .animate-tab-from-left {
-      animation: tabSlideFromLeft 0.4s cubic-bezier(0.25, 1, 0.4, 1) forwards;
+      will-change: transform, opacity;
+      backface-visibility: hidden;
+      animation: tabSlideFromLeft 0.36s cubic-bezier(0.22, 1, 0.36, 1) forwards;
     }
 
     .tilt-card {
@@ -1055,7 +1083,7 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
          1. Opens as "FirstAdvantage" with green dot on 'i' and green 'an' in 'Advantage'
          2. Collapses "irst" and "dvantage" while sliding 'A' left next to 'F' to become "FA"
          3. Expands " Calculator" to form "FA Calculator"
-         4. Glides smoothly upward from the center of the splash screen into the top header! -->
+         4. Glides smoothly upward from the center of the splash screen into the top header while the UI progressively unblurs! -->
     <div id="splashTitleMorph" class="splash-morph-row" aria-label="First Advantage FA Calculator">
       <span class="morph-char-f">F</span><span class="morph-collapse-irst"><span class="fadv-i-wrap">&#305;<span class="fadv-i-dot"></span></span>rst</span><span class="morph-char-a">A</span><span class="morph-collapse-dvantage">dv<span class="fadv-a-green">a</span><span class="fadv-n-split">n</span>tage</span><span class="morph-expand-calc">&nbsp;Calculator</span>
     </div>
@@ -1131,7 +1159,7 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
   <!-- ========================================================================= -->
   <!-- TOP HEADER BAR (KEEPS "FA Calculator" VISIBLE ALWAYS; HIDES LOGO IF SMALL)-->
   <!-- ========================================================================= -->
-  <header class="adaptive-header relative bg-fadv-ivory/90 dark:bg-fadv-forest/90 backdrop-blur-md border-b border-fadv-sandBorder dark:border-white/10 px-3.5 sm:px-6 lg:px-10 py-2 sm:py-3 grid grid-cols-12 items-center gap-2 lg:gap-4 shrink-0 shadow-xs transition-colors duration-300 z-20">
+  <header id="appHeaderBar" class="app-ui-blur-stage adaptive-header relative bg-fadv-ivory/90 dark:bg-fadv-forest/90 backdrop-blur-md border-b border-fadv-sandBorder dark:border-white/10 px-3.5 sm:px-6 lg:px-10 py-2 sm:py-3 grid grid-cols-12 items-center gap-2 lg:gap-4 shrink-0 shadow-xs transition-colors duration-300 z-20">
     
     <!-- Left Column (3 of 12 cols on lg+; hidden automatically on smaller windows so "FA Calculator" always fits) -->
     <div id="brandLogoSlot" class="col-span-3 flex items-center justify-start">
@@ -1231,7 +1259,7 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
   <!-- ========================================================================= -->
   <!-- MAIN WORKSPACE (FULL-SPACE UTILIZATION ACROSS DESKTOP, CORNER & MOBILE)  -->
   <!-- ========================================================================= -->
-  <main id="mainWorkspace" class="flex-1 flex items-center justify-center px-3 sm:px-5 py-2 sm:py-3 min-h-0 z-10 custom-scroll">
+  <main id="mainWorkspace" class="app-ui-blur-stage flex-1 flex items-center justify-center px-3 sm:px-5 py-2 sm:py-3 min-h-0 z-10 custom-scroll">
     <div id="panelScaleWrapper" class="w-full flex items-center justify-center">
 
       <!-- ========================================================== -->
@@ -1749,17 +1777,17 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
   </div>
 
   <!-- Clear, Readable Version Badge (Hides automatically whenever it would touch/overlap the calculator card) -->
-  <div id="appVersionCorner" class="select-none pointer-events-none">
+  <div id="appVersionCorner" class="app-ui-blur-stage select-none pointer-events-none">
     <span 
       id="appVersionBadge" 
       class="px-2.5 py-1 rounded-lg text-xs sm:text-sm font-mono font-extrabold bg-fadv-ivory/90 dark:bg-fadv-forest/90 text-neutral-700 dark:text-neutral-200 border border-fadv-sandBorder dark:border-white/15 shadow-sm"
     >
-      v1.7.0
+      v1.8.0
     </span>
   </div>
 
   <!-- Subtle Developer Signature Footer (Visible ONLY in spacious full-screen/large windows; hidden in smaller corner windows) -->
-  <footer id="appFooter" class="flex justify-end items-center shrink-0 select-none z-20">
+  <footer id="appFooter" class="app-ui-blur-stage flex justify-end items-center shrink-0 select-none z-20">
     <a 
       id="signatureLink"
       href="https://github.com/chand5y" 
@@ -1797,7 +1825,7 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
   </div>
 
   <script>
-    const APP_VERSION = '1.7.0';
+    const APP_VERSION = '1.8.0';
     const MIN_UPDATE_DURATION_MS = 5000;
     let isDarkMode = false;
 
@@ -1839,7 +1867,7 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
       wrapperEl.style.transform = '';
       wrapperEl.style.transformOrigin = 'center center';
 
-      // Reset Standard Calculator button heights to their natural default first
+      // Always reset Standard Calculator buttons to their original default size first
       mathKeys.forEach(btn => {
         btn.style.height = '';
       });
@@ -1849,9 +1877,11 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
       const availW = Math.max(320, mainEl.clientWidth - 16);
       const availH = Math.max(300, mainEl.clientHeight - 12);
 
-      // Standard Calculator Dynamic Button Height Expansion (up to MAX +30% when blank space exists below)
-      if (currentTabIndex === 2 && mathKeys.length > 0) {
-        const baseKeyH = mathKeys[0].offsetHeight || 44;
+      // Standard Calculator Dynamic Button Height Expansion (up to MAX +30%):
+      // ONLY in resized smaller/narrow windows (vw < 768) where the other two tabs stack vertically!
+      // In full-screen / wide windows (vw >= 768), the Standard Calculator keeps its exact original size.
+      if (currentTabIndex === 2 && vw < 768 && mathKeys.length > 0) {
+        const baseKeyH = mathKeys[0].offsetHeight || 42;
         const currentMathH = mathPanel.offsetHeight || 1;
         const extraSpaceBelow = availH - currentMathH;
         if (extraSpaceBelow > 12) {
@@ -1915,7 +1945,6 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
           const verRect = verCornerEl.getBoundingClientRect();
           const hasLeftClearance = panelRect.left >= (verRect.right + 16);
           const hasBottomClearance = (vh - panelRect.bottom) >= (verRect.height + 20);
-          // Only show the version badge if there is clean blank space to the left OR below the calculator card
           if (!hasLeftClearance && !hasBottomClearance) {
             verCornerEl.style.display = 'none';
           }
@@ -1925,7 +1954,7 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
     window.addEventListener('resize', fitActivePanelToViewport);
 
     // ============================================================================
-    // SMOOTH GLIDE OF "FA Calculator" FROM SPLASH SCREEN TO TOP HEADER!
+    // ZERO-JITTER GLIDE OF "FA Calculator" TO HEADER + PROGRESSIVE UI UNBLUR!
     // ============================================================================
     function runSplashToHeaderTransition() {
       const splash = document.getElementById('launchSplashOverlay');
@@ -1933,58 +1962,81 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
       const splashIcon = document.getElementById('launchSplashIcon');
       const splashTitle = document.getElementById('splashTitleMorph');
       const headerTitle = document.getElementById('mainHeaderTitle');
+      const blurStages = document.querySelectorAll('.app-ui-blur-stage');
 
       if (!splash || !splashTitle || !headerTitle) return;
 
-      // Hide the app's header title initially so the splash title glides right into its spot
+      // Hide the app's header title initially so the splash title glides into its exact position
       headerTitle.style.opacity = '0';
 
-      // At t = 1.95s, "FirstAdvantage" has completed morphing into "FA Calculator" in the center.
+      // At t = 1.90s, "FirstAdvantage" has completed morphing into "FA Calculator" in the center.
       setTimeout(() => {
         if (splash.classList.contains('updating-mode')) {
           headerTitle.style.opacity = '1';
+          blurStages.forEach(el => {
+            el.classList.remove('app-ui-blur-stage', 'app-ui-unblurring');
+            el.classList.add('app-ui-ready');
+          });
           return;
         }
 
-        // Lock the morphed child spans so they stay cleanly as "FA Calculator" during the flight
+        // Remove collapsed spans from layout so #splashTitleMorph has the exact same text node
+        // metrics ("FA Calculator"), font-weight (900), letter-spacing (-0.025em), and line-height (1)
+        // as #mainHeaderTitle — preventing any pixel shift when it settles!
         const c1 = splashTitle.querySelector('.morph-collapse-irst');
         const c2 = splashTitle.querySelector('.morph-collapse-dvantage');
         const ex = splashTitle.querySelector('.morph-expand-calc');
-        if (c1) { c1.style.animation = 'none'; c1.style.maxWidth = '0px'; c1.style.opacity = '0'; }
-        if (c2) { c2.style.animation = 'none'; c2.style.maxWidth = '0px'; c2.style.opacity = '0'; }
-        if (ex) { ex.style.animation = 'none'; ex.style.maxWidth = '12ch'; ex.style.opacity = '1'; ex.style.transform = 'none'; }
+        if (c1) c1.style.display = 'none';
+        if (c2) c2.style.display = 'none';
+        if (ex) {
+          ex.style.animation = 'none';
+          ex.style.maxWidth = 'none';
+          ex.style.opacity = '1';
+          ex.style.transform = 'none';
+        }
 
-        splashTitle.querySelectorAll('.morph-char-f, .morph-char-a').forEach(el => {
-          el.style.fontWeight = '900';
-        });
-
-        // Measure exact center coordinates of the splash "FA Calculator" and the header "FA Calculator"
+        // Measure exact bounding boxes of the splash "FA Calculator" and the header "FA Calculator"
         const sRect = splashTitle.getBoundingClientRect();
         const hRect = headerTitle.getBoundingClientRect();
 
         if (hRect.width > 0 && sRect.width > 0) {
           const dx = (hRect.left + hRect.width / 2) - (sRect.left + sRect.width / 2);
           const dy = (hRect.top + hRect.height / 2) - (sRect.top + sRect.height / 2);
-          const scale = hRect.height / sRect.height;
+          // Match exact width ratio so the landed title is pixel-identical in width & height to #mainHeaderTitle
+          const scale = hRect.width / sRect.width;
 
-          // Force layout flush and smoothly glide "FA Calculator" up into the header slot
           void splashTitle.offsetWidth;
-          splashTitle.style.transition = 'transform 0.72s cubic-bezier(0.22, 1, 0.36, 1)';
+          splashTitle.style.transition = 'transform 0.85s cubic-bezier(0.22, 1, 0.36, 1)';
           splashTitle.style.transformOrigin = 'center center';
-          splashTitle.style.transform = `translate3d(${dx.toFixed(1)}px, ${dy.toFixed(1)}px, 0) scale(${scale.toFixed(3)})`;
+          splashTitle.style.transform = `translate3d(${dx.toFixed(2)}px, ${dy.toFixed(2)}px, 0) scale(${scale.toFixed(4)})`;
         }
+
+        // Simultaneously start unblurring the entire calculator UI (blur(18px) -> blur(0px))
+        // so the app comes into sharp focus at the exact moment "FA Calculator" settles into the header!
+        blurStages.forEach(el => {
+          el.classList.add('app-ui-unblurring');
+        });
 
         if (splashIcon) splashIcon.classList.add('splash-icon-exit');
         if (backdrop) backdrop.classList.add('splash-fade-out');
 
-        // Right as the gliding "FA Calculator" lands in the header slot, show #mainHeaderTitle and hide the overlay
+        // Seamless zero-jitter handoff right as the glide finishes decelerating
         setTimeout(() => {
           headerTitle.style.opacity = '1';
-          if (!splash.classList.contains('updating-mode')) {
-            splash.style.display = 'none';
-          }
-        }, 720);
-      }, 1950);
+          splashTitle.style.transition = 'opacity 0.12s ease';
+          splashTitle.style.opacity = '0';
+
+          setTimeout(() => {
+            blurStages.forEach(el => {
+              el.classList.remove('app-ui-blur-stage', 'app-ui-unblurring');
+              el.classList.add('app-ui-ready');
+            });
+            if (!splash.classList.contains('updating-mode')) {
+              splash.style.display = 'none';
+            }
+          }, 120);
+        }, 840);
+      }, 1900);
     }
 
     let durationOperation = 'add';
@@ -2562,6 +2614,7 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
       if (splashTitle) {
         splashTitle.style.transition = 'none';
         splashTitle.style.transform = 'none';
+        splashTitle.style.opacity = '1';
       }
       if (updateBox) {
         updateBox.classList.remove('hidden');
@@ -3319,7 +3372,7 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
         const slideAnimationClass = newIndex > currentTabIndex ? 'animate-tab-from-right' : 'animate-tab-from-left';
         currentTabIndex = newIndex;
 
-        tabSlidingPill.style.transform = `translateX(${newIndex * 100}%)`;
+        tabSlidingPill.style.transform = `translate3d(${newIndex * 100}%, 0, 0)`;
 
         tabButtons.forEach((btn, idx) => {
           btn.className = idx === newIndex ? activeBtnClass : inactiveBtnClass;
@@ -3329,18 +3382,26 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
           if (idx === newIndex) {
             panel.classList.remove('hidden', 'animate-tab-from-right', 'animate-tab-from-left');
             panel.classList.add('flex');
-            void panel.offsetWidth;
-            panel.classList.add(slideAnimationClass);
           } else {
             panel.classList.add('hidden');
             panel.classList.remove('flex', 'animate-tab-from-right', 'animate-tab-from-left');
           }
         });
 
+        // Calculate viewport fit ONCE synchronously before starting the slide animation (never mid-animation!)
         fitActivePanelToViewport();
-        setTimeout(fitActivePanelToViewport, 30);
-        if (newIndex === 0) startInput.focus();
-        else if (newIndex === 1) fromInput.focus();
+
+        const targetPanel = tabPanels[newIndex];
+        void targetPanel.offsetWidth;
+        targetPanel.classList.add(slideAnimationClass);
+
+        // Focus after the slide animation settles using preventScroll so the browser never janks mid-slide
+        setTimeout(() => {
+          try {
+            if (currentTabIndex === 0) startInput.focus({ preventScroll: true });
+            else if (currentTabIndex === 1) fromInput.focus({ preventScroll: true });
+          } catch (e) {}
+        }, 370);
       }
 
       tabDurationBtn.addEventListener('click', () => switchTab(0));
@@ -3620,9 +3681,8 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
         triggerResultAnimation(document.getElementById('gapResultBox'));
       });
 
-      startInput.focus();
+      startInput.focus({ preventScroll: true });
       fitActivePanelToViewport();
-      setTimeout(fitActivePanelToViewport, 30);
     });
   </script>
 </body>

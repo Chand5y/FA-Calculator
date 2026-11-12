@@ -1,6 +1,6 @@
 const ACTIVE_CACHE = 'fa-calc-active-v1';
 const STAGED_CACHE = 'fa-calc-staged-v1';
-const SW_VERSION = '1.7.0';
+const SW_VERSION = '1.8.0';
 const ASSETS = [
   './',
   './index.html',
