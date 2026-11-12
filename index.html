@@ -1744,19 +1744,26 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
       const durationYears = document.getElementById('durationYears');
       const durationMonths = document.getElementById('durationMonths');
       const durationDays = document.getElementById('durationDays');
+      const targetDateEl = document.getElementById('targetCalculatedDate');
+      const targetDayEl = document.getElementById('targetDayOfWeek');
 
       triggerDisappearAnimation(startInput);
       triggerDisappearAnimation(durationYears);
       triggerDisappearAnimation(durationMonths);
       triggerDisappearAnimation(durationDays);
+      triggerDisappearAnimation(targetDateEl);
+      triggerDisappearAnimation(targetDayEl);
 
       startInput.value = dateStr;
       validateDateField(startInput, startMsg, 'Type or paste with Ctrl+V');
       durationYears.value = 0;
       durationMonths.value = 0;
       durationDays.value = 0;
-      durationYears.focus();
-      durationYears.select();
+      targetDateEl.textContent = '--/--/----';
+      targetDayEl.textContent = '';
+      if (document.activeElement && typeof document.activeElement.blur === 'function') {
+        document.activeElement.blur();
+      }
       showSuccessToast(`Start Date set to ${dateStr}`);
     }
 
