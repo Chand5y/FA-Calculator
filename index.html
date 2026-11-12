@@ -62,7 +62,6 @@ svg { display: block; vertical-align: middle; }
 .col-span-3 { grid-column: span 3 / span 3; }
 .col-span-6 { grid-column: span 6 / span 6; }
 .cursor-pointer { cursor: pointer; }
-.duration-200 { transition-duration: 200ms; }
 .duration-300 { transition-duration: 300ms; }
 .fill-\[\#E3DAD0\] { fill: rgb(227, 218, 208); }
 .fixed { position: fixed; }
@@ -443,7 +442,7 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
     }
 
     /* ============================================================================ */
-    /* LAUNCH & UPDATE SPLASH OVERLAY ("FirstAdvantage" -> "FA Calculator" + FLIP)  */
+    /* LAUNCH & UPDATE SPLASH OVERLAY ("FirstAdvantage" -> "FA Calculator" + GLIDE) */
     /* ============================================================================ */
     #launchSplashOverlay {
       position: fixed;
@@ -458,13 +457,13 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
     #launchSplashBackdrop {
       position: absolute;
       inset: 0;
-      background: rgba(239, 230, 221, 0.76);
-      backdrop-filter: blur(22px) saturate(140%);
-      -webkit-backdrop-filter: blur(22px) saturate(140%);
-      transition: opacity 0.68s cubic-bezier(0.22, 1, 0.36, 1);
+      background: rgba(239, 230, 221, 0.84);
+      backdrop-filter: blur(24px) saturate(140%);
+      -webkit-backdrop-filter: blur(24px) saturate(140%);
+      transition: opacity 0.72s cubic-bezier(0.22, 1, 0.36, 1);
     }
     html.dark #launchSplashBackdrop {
-      background: rgba(7, 23, 16, 0.80);
+      background: rgba(7, 23, 16, 0.86);
     }
     #launchSplashBackdrop.splash-fade-out {
       opacity: 0;
@@ -477,15 +476,16 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
       height: 132px;
       object-fit: contain;
       filter: drop-shadow(0 22px 38px rgba(0, 166, 81, 0.32));
-      animation: splashLogoSpringIn 0.72s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-      transition: opacity 0.52s cubic-bezier(0.22, 1, 0.36, 1), transform 0.58s cubic-bezier(0.22, 1, 0.36, 1);
+      animation: splashLogoSpringIn 0.72s cubic-bezier(0.34, 1.56, 0.64, 1);
+      transition: opacity 0.48s cubic-bezier(0.22, 1, 0.36, 1), transform 0.52s cubic-bezier(0.22, 1, 0.36, 1);
     }
     #launchSplashIcon.splash-icon-exit {
       opacity: 0 !important;
-      transform: scale(0.78) translateY(-18px) !important;
+      transform: scale(0.75) translateY(-20px) !important;
     }
 
-    /* Animated Title Morph Container under the Splash Icon */
+    /* Animated Title Morph Container under the Splash Icon
+       IMPORTANT: No "forwards" fill-mode on .splash-morph-row so JS transform glide is NEVER blocked by CSS animation! */
     .splash-morph-row {
       position: relative;
       z-index: 3;
@@ -498,8 +498,7 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
       letter-spacing: -0.03em;
       line-height: 1.15;
       white-space: nowrap;
-      color: #23272A;
-      animation: splashTextAppear 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      color: #171717;
       will-change: transform;
     }
     html.dark .splash-morph-row {
@@ -510,8 +509,8 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
     .morph-char-a {
       display: inline-block;
       font-weight: 800;
-      color: #23272A;
-      transition: font-weight 0.3s ease;
+      color: #171717;
+      transition: font-weight 0.25s ease;
     }
     html.dark .morph-char-f,
     html.dark .morph-char-a {
@@ -546,7 +545,7 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
       color: #24D16E;
     }
     .fadv-n-split {
-      background: linear-gradient(90deg, #009B4D 0%, #009B4D 58%, #23272A 62%, #23272A 100%);
+      background: linear-gradient(90deg, #009B4D 0%, #009B4D 58%, #171717 62%, #171717 100%);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
@@ -566,7 +565,7 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
       max-width: 2.8ch;
       opacity: 1;
       transform-origin: left center;
-      animation: collapseFirstPart 2.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      animation: collapseFirstPart 2.05s cubic-bezier(0.22, 1, 0.36, 1) forwards;
     }
 
     /* "dvantage" collapses to 0 width simultaneously */
@@ -577,7 +576,7 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
       max-width: 8.6ch;
       opacity: 1;
       transform-origin: left center;
-      animation: collapseAdvantagePart 2.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      animation: collapseAdvantagePart 2.05s cubic-bezier(0.22, 1, 0.36, 1) forwards;
     }
 
     /* " Calculator" expands smoothly right after "FA" once "A" has slid next to "F" */
@@ -589,18 +588,7 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
       max-width: 0ch;
       opacity: 0;
       transform: translateX(-8px);
-      animation: expandCalculatorPart 2.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-    }
-
-    @keyframes splashTextAppear {
-      0% {
-        opacity: 0;
-        transform: translateY(10px) scale(0.95);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
+      animation: expandCalculatorPart 2.05s cubic-bezier(0.22, 1, 0.36, 1) forwards;
     }
 
     @keyframes collapseFirstPart {
@@ -647,7 +635,7 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
         opacity: 0;
         transform: translateX(-8px);
       }
-      86%, 100% {
+      88%, 100% {
         max-width: 11.5ch;
         opacity: 1;
         transform: translateX(0);
@@ -714,6 +702,42 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
     @keyframes updateIconPulse {
       0%, 100% { transform: scale(0.95); filter: drop-shadow(0 18px 32px rgba(0, 166, 81, 0.28)); }
       50% { transform: scale(1.08); filter: drop-shadow(0 24px 44px rgba(36, 209, 110, 0.52)); }
+    }
+
+    /* ============================================================================ */
+    /* PER-SEGMENT INVALID DATE HIGHLIGHT OVERLAY (MM / DD / YYYY IN RED)           */
+    /* ============================================================================ */
+    .date-input-mirror {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+      white-space: pre;
+      overflow: hidden;
+      border: 1px solid transparent;
+      user-select: none;
+    }
+    .date-input-with-mirror.has-mirror-text {
+      color: transparent !important;
+      caret-color: #171717;
+    }
+    html.dark .date-input-with-mirror.has-mirror-text {
+      color: transparent !important;
+      caret-color: #FFFFFF;
+    }
+    .date-input-with-mirror::selection {
+      background-color: rgba(0, 166, 81, 0.25);
+      color: transparent;
+    }
+    .seg-invalid {
+      color: #DC2626 !important;
+      text-decoration: underline wavy rgba(220, 38, 38, 0.45);
+      text-underline-offset: 4px;
+    }
+    html.dark .seg-invalid {
+      color: #F87171 !important;
+      text-decoration: underline wavy rgba(248, 113, 113, 0.5);
     }
 
     /* Advanced Depth-of-Field Bokeh & Texture Blur for Background Geometric Motifs */
@@ -927,7 +951,7 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
       opacity: 1;
     }
 
-    /* Clear, Legible Bottom-Left Version Badge (away from the First Advantage logo) */
+    /* Clear, Legible Bottom-Left Version Badge (hidden automatically whenever it would touch the card) */
     #appVersionCorner {
       position: fixed;
       bottom: 12px;
@@ -955,10 +979,6 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
         position: absolute !important;
         top: 0.45rem !important;
         right: 0.75rem !important;
-      }
-      #appVersionCorner {
-        bottom: 6px;
-        left: 10px;
       }
     }
 
@@ -1032,10 +1052,10 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
       alt="FA Calculator"
     >
     <!-- Exact FirstAdvantage Brand-to-Title Morph:
-         1. Opens as "FirstAdvantage" with green dot on 'i' and green 'an' in 'Advantage' (matching official logo)
+         1. Opens as "FirstAdvantage" with green dot on 'i' and green 'an' in 'Advantage'
          2. Collapses "irst" and "dvantage" while sliding 'A' left next to 'F' to become "FA"
          3. Expands " Calculator" to form "FA Calculator"
-         4. Slides & scales smoothly from the splash screen directly into the app's top "FA Calculator" header! -->
+         4. Glides smoothly upward from the center of the splash screen into the top header! -->
     <div id="splashTitleMorph" class="splash-morph-row" aria-label="First Advantage FA Calculator">
       <span class="morph-char-f">F</span><span class="morph-collapse-irst"><span class="fadv-i-wrap">&#305;<span class="fadv-i-dot"></span></span>rst</span><span class="morph-char-a">A</span><span class="morph-collapse-dvantage">dv<span class="fadv-a-green">a</span><span class="fadv-n-split">n</span>tage</span><span class="morph-expand-calc">&nbsp;Calculator</span>
     </div>
@@ -1131,7 +1151,7 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
 
     <!-- Center Column: "FA Calculator" (ALWAYS visible at all sizes!) + 3 Tabs -->
     <div id="headerCenterSlot" class="col-span-6 flex flex-col items-center justify-center w-full">
-      <h1 id="mainHeaderTitle" class="adaptive-title text-lg sm:text-2xl lg:text-[26px] font-black tracking-tight text-neutral-900 dark:text-white mb-1.5 leading-none text-center transition-opacity duration-200">
+      <h1 id="mainHeaderTitle" class="adaptive-title text-lg sm:text-2xl lg:text-[26px] font-black tracking-tight text-neutral-900 dark:text-white mb-1.5 leading-none text-center">
         FA Calculator
       </h1>
       
@@ -1264,12 +1284,14 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
                     placeholder="MM/DD/YYYY" 
                     maxlength="10"
                     autocomplete="off"
-                    class="w-full pl-3.5 pr-11 py-2 sm:py-3 bg-white dark:bg-fadv-forest border border-neutral-300 dark:border-white/15 rounded-xl font-mono text-lg sm:text-2xl lg:text-3xl font-extrabold text-neutral-900 dark:text-white placeholder-neutral-300 dark:placeholder-neutral-600 focus:outline-none focus:border-fadv-green dark:focus:border-fadv-lime select-text tracking-wider"
+                    class="date-input-with-mirror w-full pl-3.5 pr-11 py-2 sm:py-3 bg-white dark:bg-fadv-forest border border-neutral-300 dark:border-white/15 rounded-xl font-mono text-lg sm:text-2xl lg:text-3xl font-extrabold text-neutral-900 dark:text-white placeholder-neutral-300 dark:placeholder-neutral-600 focus:outline-none focus:border-fadv-green dark:focus:border-fadv-lime select-text tracking-wider"
                   >
+                  <!-- Per-Segment Invalid Highlight Mirror (Turns only invalid MM, DD, or YYYY red) -->
+                  <div id="startDateMirror" class="date-input-mirror pl-3.5 pr-11 py-2 sm:py-3 font-mono text-lg sm:text-2xl lg:text-3xl font-extrabold text-neutral-900 dark:text-white tracking-wider" aria-hidden="true"></div>
                   <button 
                     type="button" 
                     id="startCalendarBtn" 
-                    class="spring-btn absolute right-2 p-1.5 sm:p-2 text-neutral-400 hover:text-fadv-green dark:hover:text-fadv-lime hover:bg-fadv-mint/50 dark:hover:bg-white/10 rounded-xl cursor-pointer"
+                    class="spring-btn absolute right-2 z-10 p-1.5 sm:p-2 text-neutral-400 hover:text-fadv-green dark:hover:text-fadv-lime hover:bg-fadv-mint/50 dark:hover:bg-white/10 rounded-xl cursor-pointer"
                     title="Open Calendar"
                   >
                     <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1451,12 +1473,13 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
                   placeholder="MM/DD/YYYY" 
                   maxlength="10"
                   autocomplete="off"
-                  class="w-full pl-3.5 pr-11 py-2 sm:py-3 bg-white dark:bg-fadv-forest border border-neutral-300 dark:border-white/15 rounded-xl font-mono text-lg sm:text-2xl lg:text-3xl font-extrabold text-neutral-900 dark:text-white placeholder-neutral-300 dark:placeholder-neutral-600 focus:outline-none focus:border-fadv-green dark:focus:border-fadv-lime select-text tracking-wider"
+                  class="date-input-with-mirror w-full pl-3.5 pr-11 py-2 sm:py-3 bg-white dark:bg-fadv-forest border border-neutral-300 dark:border-white/15 rounded-xl font-mono text-lg sm:text-2xl lg:text-3xl font-extrabold text-neutral-900 dark:text-white placeholder-neutral-300 dark:placeholder-neutral-600 focus:outline-none focus:border-fadv-green dark:focus:border-fadv-lime select-text tracking-wider"
                 >
+                <div id="fromDateMirror" class="date-input-mirror pl-3.5 pr-11 py-2 sm:py-3 font-mono text-lg sm:text-2xl lg:text-3xl font-extrabold text-neutral-900 dark:text-white tracking-wider" aria-hidden="true"></div>
                 <button 
                   type="button" 
                   id="fromCalendarBtn" 
-                  class="spring-btn absolute right-2 p-1.5 sm:p-2 text-neutral-400 hover:text-fadv-green dark:hover:text-fadv-lime hover:bg-fadv-mint/50 dark:hover:bg-white/10 rounded-xl cursor-pointer"
+                  class="spring-btn absolute right-2 z-10 p-1.5 sm:p-2 text-neutral-400 hover:text-fadv-green dark:hover:text-fadv-lime hover:bg-fadv-mint/50 dark:hover:bg-white/10 rounded-xl cursor-pointer"
                   title="Open Calendar"
                 >
                   <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1493,12 +1516,13 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
                   placeholder="MM/DD/YYYY" 
                   maxlength="10"
                   autocomplete="off"
-                  class="w-full pl-3.5 pr-11 py-2 sm:py-3 bg-white dark:bg-fadv-forest border border-neutral-300 dark:border-white/15 rounded-xl font-mono text-lg sm:text-2xl lg:text-3xl font-extrabold text-neutral-900 dark:text-white placeholder-neutral-300 dark:placeholder-neutral-600 focus:outline-none focus:border-fadv-green dark:focus:border-fadv-lime select-text tracking-wider"
+                  class="date-input-with-mirror w-full pl-3.5 pr-11 py-2 sm:py-3 bg-white dark:bg-fadv-forest border border-neutral-300 dark:border-white/15 rounded-xl font-mono text-lg sm:text-2xl lg:text-3xl font-extrabold text-neutral-900 dark:text-white placeholder-neutral-300 dark:placeholder-neutral-600 focus:outline-none focus:border-fadv-green dark:focus:border-fadv-lime select-text tracking-wider"
                 >
+                <div id="toDateMirror" class="date-input-mirror pl-3.5 pr-11 py-2 sm:py-3 font-mono text-lg sm:text-2xl lg:text-3xl font-extrabold text-neutral-900 dark:text-white tracking-wider" aria-hidden="true"></div>
                 <button 
                   type="button" 
                   id="toCalendarBtn" 
-                  class="spring-btn absolute right-2 p-1.5 sm:p-2 text-neutral-400 hover:text-fadv-green dark:hover:text-fadv-lime hover:bg-fadv-mint/50 dark:hover:bg-white/10 rounded-xl cursor-pointer"
+                  class="spring-btn absolute right-2 z-10 p-1.5 sm:p-2 text-neutral-400 hover:text-fadv-green dark:hover:text-fadv-lime hover:bg-fadv-mint/50 dark:hover:bg-white/10 rounded-xl cursor-pointer"
                   title="Open Calendar"
                 >
                   <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1596,30 +1620,30 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
             </button>
           </div>
 
-          <div class="grid grid-cols-4 gap-2 sm:gap-2.5 lg:gap-3">
-            <button type="button" data-math="AC" class="adaptive-math-key math-key spring-btn py-2 sm:py-2.5 lg:py-3 rounded-2xl bg-red-500/10 hover:bg-red-500/20 text-red-600 dark:text-red-400 font-extrabold text-base sm:text-lg lg:text-xl border border-red-500/20 cursor-pointer">AC</button>
-            <button type="button" data-math="DEL" class="adaptive-math-key math-key spring-btn py-2 sm:py-2.5 lg:py-3 rounded-2xl bg-fadv-surface dark:bg-fadv-cardDark hover:bg-neutral-200 dark:hover:bg-white/10 text-neutral-700 dark:text-neutral-200 font-extrabold text-base sm:text-lg lg:text-xl border border-neutral-200/80 dark:border-white/10 cursor-pointer">⌫</button>
-            <button type="button" data-math="%" class="adaptive-math-key math-key spring-btn py-2 sm:py-2.5 lg:py-3 rounded-2xl bg-fadv-surface dark:bg-fadv-cardDark hover:bg-neutral-200 dark:hover:bg-white/10 text-neutral-700 dark:text-neutral-200 font-mono font-extrabold text-base sm:text-lg lg:text-xl border border-neutral-200/80 dark:border-white/10 cursor-pointer">%</button>
-            <button type="button" data-math="/" class="adaptive-math-key math-key spring-btn py-2 sm:py-2.5 lg:py-3 rounded-2xl bg-fadv-mint dark:bg-fadv-green/20 hover:bg-fadv-green hover:text-white text-fadv-green dark:text-fadv-lime font-mono font-extrabold text-lg sm:text-xl lg:text-2xl border border-fadv-green/30 cursor-pointer">&divide;</button>
+          <div id="mathKeypadGrid" class="grid grid-cols-4 gap-2 sm:gap-2.5 lg:gap-3">
+            <button type="button" data-math="AC" class="adaptive-math-key math-key spring-btn py-2 sm:py-2.5 lg:py-3 rounded-2xl bg-red-500/10 hover:bg-red-500/20 text-red-600 dark:text-red-400 font-extrabold text-base sm:text-lg lg:text-xl border border-red-500/20 flex items-center justify-center cursor-pointer">AC</button>
+            <button type="button" data-math="DEL" class="adaptive-math-key math-key spring-btn py-2 sm:py-2.5 lg:py-3 rounded-2xl bg-fadv-surface dark:bg-fadv-cardDark hover:bg-neutral-200 dark:hover:bg-white/10 text-neutral-700 dark:text-neutral-200 font-extrabold text-base sm:text-lg lg:text-xl border border-neutral-200/80 dark:border-white/10 flex items-center justify-center cursor-pointer">⌫</button>
+            <button type="button" data-math="%" class="adaptive-math-key math-key spring-btn py-2 sm:py-2.5 lg:py-3 rounded-2xl bg-fadv-surface dark:bg-fadv-cardDark hover:bg-neutral-200 dark:hover:bg-white/10 text-neutral-700 dark:text-neutral-200 font-mono font-extrabold text-base sm:text-lg lg:text-xl border border-neutral-200/80 dark:border-white/10 flex items-center justify-center cursor-pointer">%</button>
+            <button type="button" data-math="/" class="adaptive-math-key math-key spring-btn py-2 sm:py-2.5 lg:py-3 rounded-2xl bg-fadv-mint dark:bg-fadv-green/20 hover:bg-fadv-green hover:text-white text-fadv-green dark:text-fadv-lime font-mono font-extrabold text-lg sm:text-xl lg:text-2xl border border-fadv-green/30 flex items-center justify-center cursor-pointer">&divide;</button>
 
-            <button type="button" data-math="7" class="adaptive-math-key math-key spring-btn py-2 sm:py-2.5 lg:py-3 rounded-2xl bg-fadv-surface dark:bg-fadv-dark/80 hover:bg-neutral-200/70 dark:hover:bg-white/10 text-neutral-900 dark:text-white font-mono font-extrabold text-lg sm:text-xl lg:text-2xl border border-neutral-200/80 dark:border-white/10 cursor-pointer">7</button>
-            <button type="button" data-math="8" class="adaptive-math-key math-key spring-btn py-2 sm:py-2.5 lg:py-3 rounded-2xl bg-fadv-surface dark:bg-fadv-dark/80 hover:bg-neutral-200/70 dark:hover:bg-white/10 text-neutral-900 dark:text-white font-mono font-extrabold text-lg sm:text-xl lg:text-2xl border border-neutral-200/80 dark:border-white/10 cursor-pointer">8</button>
-            <button type="button" data-math="9" class="adaptive-math-key math-key spring-btn py-2 sm:py-2.5 lg:py-3 rounded-2xl bg-fadv-surface dark:bg-fadv-dark/80 hover:bg-neutral-200/70 dark:hover:bg-white/10 text-neutral-900 dark:text-white font-mono font-extrabold text-lg sm:text-xl lg:text-2xl border border-neutral-200/80 dark:border-white/10 cursor-pointer">9</button>
-            <button type="button" data-math="*" class="adaptive-math-key math-key spring-btn py-2 sm:py-2.5 lg:py-3 rounded-2xl bg-fadv-mint dark:bg-fadv-green/20 hover:bg-fadv-green hover:text-white text-fadv-green dark:text-fadv-lime font-mono font-extrabold text-lg sm:text-xl lg:text-2xl border border-fadv-green/30 cursor-pointer">&times;</button>
+            <button type="button" data-math="7" class="adaptive-math-key math-key spring-btn py-2 sm:py-2.5 lg:py-3 rounded-2xl bg-fadv-surface dark:bg-fadv-dark/80 hover:bg-neutral-200/70 dark:hover:bg-white/10 text-neutral-900 dark:text-white font-mono font-extrabold text-lg sm:text-xl lg:text-2xl border border-neutral-200/80 dark:border-white/10 flex items-center justify-center cursor-pointer">7</button>
+            <button type="button" data-math="8" class="adaptive-math-key math-key spring-btn py-2 sm:py-2.5 lg:py-3 rounded-2xl bg-fadv-surface dark:bg-fadv-dark/80 hover:bg-neutral-200/70 dark:hover:bg-white/10 text-neutral-900 dark:text-white font-mono font-extrabold text-lg sm:text-xl lg:text-2xl border border-neutral-200/80 dark:border-white/10 flex items-center justify-center cursor-pointer">8</button>
+            <button type="button" data-math="9" class="adaptive-math-key math-key spring-btn py-2 sm:py-2.5 lg:py-3 rounded-2xl bg-fadv-surface dark:bg-fadv-dark/80 hover:bg-neutral-200/70 dark:hover:bg-white/10 text-neutral-900 dark:text-white font-mono font-extrabold text-lg sm:text-xl lg:text-2xl border border-neutral-200/80 dark:border-white/10 flex items-center justify-center cursor-pointer">9</button>
+            <button type="button" data-math="*" class="adaptive-math-key math-key spring-btn py-2 sm:py-2.5 lg:py-3 rounded-2xl bg-fadv-mint dark:bg-fadv-green/20 hover:bg-fadv-green hover:text-white text-fadv-green dark:text-fadv-lime font-mono font-extrabold text-lg sm:text-xl lg:text-2xl border border-fadv-green/30 flex items-center justify-center cursor-pointer">&times;</button>
 
-            <button type="button" data-math="4" class="adaptive-math-key math-key spring-btn py-2 sm:py-2.5 lg:py-3 rounded-2xl bg-fadv-surface dark:bg-fadv-dark/80 hover:bg-neutral-200/70 dark:hover:bg-white/10 text-neutral-900 dark:text-white font-mono font-extrabold text-lg sm:text-xl lg:text-2xl border border-neutral-200/80 dark:border-white/10 cursor-pointer">4</button>
-            <button type="button" data-math="5" class="adaptive-math-key math-key spring-btn py-2 sm:py-2.5 lg:py-3 rounded-2xl bg-fadv-surface dark:bg-fadv-dark/80 hover:bg-neutral-200/70 dark:hover:bg-white/10 text-neutral-900 dark:text-white font-mono font-extrabold text-lg sm:text-xl lg:text-2xl border border-neutral-200/80 dark:border-white/10 cursor-pointer">5</button>
-            <button type="button" data-math="6" class="adaptive-math-key math-key spring-btn py-2 sm:py-2.5 lg:py-3 rounded-2xl bg-fadv-surface dark:bg-fadv-dark/80 hover:bg-neutral-200/70 dark:hover:bg-white/10 text-neutral-900 dark:text-white font-mono font-extrabold text-lg sm:text-xl lg:text-2xl border border-neutral-200/80 dark:border-white/10 cursor-pointer">6</button>
-            <button type="button" data-math="-" class="adaptive-math-key math-key spring-btn py-2 sm:py-2.5 lg:py-3 rounded-2xl bg-fadv-mint dark:bg-fadv-green/20 hover:bg-fadv-green hover:text-white text-fadv-green dark:text-fadv-lime font-mono font-extrabold text-lg sm:text-xl lg:text-2xl border border-fadv-green/30 cursor-pointer">&minus;</button>
+            <button type="button" data-math="4" class="adaptive-math-key math-key spring-btn py-2 sm:py-2.5 lg:py-3 rounded-2xl bg-fadv-surface dark:bg-fadv-dark/80 hover:bg-neutral-200/70 dark:hover:bg-white/10 text-neutral-900 dark:text-white font-mono font-extrabold text-lg sm:text-xl lg:text-2xl border border-neutral-200/80 dark:border-white/10 flex items-center justify-center cursor-pointer">4</button>
+            <button type="button" data-math="5" class="adaptive-math-key math-key spring-btn py-2 sm:py-2.5 lg:py-3 rounded-2xl bg-fadv-surface dark:bg-fadv-dark/80 hover:bg-neutral-200/70 dark:hover:bg-white/10 text-neutral-900 dark:text-white font-mono font-extrabold text-lg sm:text-xl lg:text-2xl border border-neutral-200/80 dark:border-white/10 flex items-center justify-center cursor-pointer">5</button>
+            <button type="button" data-math="6" class="adaptive-math-key math-key spring-btn py-2 sm:py-2.5 lg:py-3 rounded-2xl bg-fadv-surface dark:bg-fadv-dark/80 hover:bg-neutral-200/70 dark:hover:bg-white/10 text-neutral-900 dark:text-white font-mono font-extrabold text-lg sm:text-xl lg:text-2xl border border-neutral-200/80 dark:border-white/10 flex items-center justify-center cursor-pointer">6</button>
+            <button type="button" data-math="-" class="adaptive-math-key math-key spring-btn py-2 sm:py-2.5 lg:py-3 rounded-2xl bg-fadv-mint dark:bg-fadv-green/20 hover:bg-fadv-green hover:text-white text-fadv-green dark:text-fadv-lime font-mono font-extrabold text-lg sm:text-xl lg:text-2xl border border-fadv-green/30 flex items-center justify-center cursor-pointer">&minus;</button>
 
-            <button type="button" data-math="1" class="adaptive-math-key math-key spring-btn py-2 sm:py-2.5 lg:py-3 rounded-2xl bg-fadv-surface dark:bg-fadv-dark/80 hover:bg-neutral-200/70 dark:hover:bg-white/10 text-neutral-900 dark:text-white font-mono font-extrabold text-lg sm:text-xl lg:text-2xl border border-neutral-200/80 dark:border-white/10 cursor-pointer">1</button>
-            <button type="button" data-math="2" class="adaptive-math-key math-key spring-btn py-2 sm:py-2.5 lg:py-3 rounded-2xl bg-fadv-surface dark:bg-fadv-dark/80 hover:bg-neutral-200/70 dark:hover:bg-white/10 text-neutral-900 dark:text-white font-mono font-extrabold text-lg sm:text-xl lg:text-2xl border border-neutral-200/80 dark:border-white/10 cursor-pointer">2</button>
-            <button type="button" data-math="3" class="adaptive-math-key math-key spring-btn py-2 sm:py-2.5 lg:py-3 rounded-2xl bg-fadv-surface dark:bg-fadv-dark/80 hover:bg-neutral-200/70 dark:hover:bg-white/10 text-neutral-900 dark:text-white font-mono font-extrabold text-lg sm:text-xl lg:text-2xl border border-neutral-200/80 dark:border-white/10 cursor-pointer">3</button>
-            <button type="button" data-math="+" class="adaptive-math-key math-key spring-btn py-2 sm:py-2.5 lg:py-3 rounded-2xl bg-fadv-mint dark:bg-fadv-green/20 hover:bg-fadv-green hover:text-white text-fadv-green dark:text-fadv-lime font-mono font-extrabold text-lg sm:text-xl lg:text-2xl border border-fadv-green/30 cursor-pointer">+</button>
+            <button type="button" data-math="1" class="adaptive-math-key math-key spring-btn py-2 sm:py-2.5 lg:py-3 rounded-2xl bg-fadv-surface dark:bg-fadv-dark/80 hover:bg-neutral-200/70 dark:hover:bg-white/10 text-neutral-900 dark:text-white font-mono font-extrabold text-lg sm:text-xl lg:text-2xl border border-neutral-200/80 dark:border-white/10 flex items-center justify-center cursor-pointer">1</button>
+            <button type="button" data-math="2" class="adaptive-math-key math-key spring-btn py-2 sm:py-2.5 lg:py-3 rounded-2xl bg-fadv-surface dark:bg-fadv-dark/80 hover:bg-neutral-200/70 dark:hover:bg-white/10 text-neutral-900 dark:text-white font-mono font-extrabold text-lg sm:text-xl lg:text-2xl border border-neutral-200/80 dark:border-white/10 flex items-center justify-center cursor-pointer">2</button>
+            <button type="button" data-math="3" class="adaptive-math-key math-key spring-btn py-2 sm:py-2.5 lg:py-3 rounded-2xl bg-fadv-surface dark:bg-fadv-dark/80 hover:bg-neutral-200/70 dark:hover:bg-white/10 text-neutral-900 dark:text-white font-mono font-extrabold text-lg sm:text-xl lg:text-2xl border border-neutral-200/80 dark:border-white/10 flex items-center justify-center cursor-pointer">3</button>
+            <button type="button" data-math="+" class="adaptive-math-key math-key spring-btn py-2 sm:py-2.5 lg:py-3 rounded-2xl bg-fadv-mint dark:bg-fadv-green/20 hover:bg-fadv-green hover:text-white text-fadv-green dark:text-fadv-lime font-mono font-extrabold text-lg sm:text-xl lg:text-2xl border border-fadv-green/30 flex items-center justify-center cursor-pointer">+</button>
 
-            <button type="button" data-math="0" class="adaptive-math-key math-key col-span-2 spring-btn py-2 sm:py-2.5 lg:py-3 rounded-2xl bg-fadv-surface dark:bg-fadv-dark/80 hover:bg-neutral-200/70 dark:hover:bg-white/10 text-neutral-900 dark:text-white font-mono font-extrabold text-lg sm:text-xl lg:text-2xl border border-neutral-200/80 dark:border-white/10 cursor-pointer">0</button>
-            <button type="button" data-math="." class="adaptive-math-key math-key spring-btn py-2 sm:py-2.5 lg:py-3 rounded-2xl bg-fadv-surface dark:bg-fadv-dark/80 hover:bg-neutral-200/70 dark:hover:bg-white/10 text-neutral-900 dark:text-white font-mono font-extrabold text-lg sm:text-xl lg:text-2xl border border-neutral-200/80 dark:border-white/10 cursor-pointer">.</button>
-            <button type="button" data-math="=" class="adaptive-math-key math-key spring-btn py-2 sm:py-2.5 lg:py-3 rounded-2xl bg-fadv-green hover:bg-fadv-greenHover text-white font-mono font-extrabold text-lg sm:text-xl lg:text-2xl shadow-lg shadow-fadv-green/25 cursor-pointer">=</button>
+            <button type="button" data-math="0" class="adaptive-math-key math-key col-span-2 spring-btn py-2 sm:py-2.5 lg:py-3 rounded-2xl bg-fadv-surface dark:bg-fadv-dark/80 hover:bg-neutral-200/70 dark:hover:bg-white/10 text-neutral-900 dark:text-white font-mono font-extrabold text-lg sm:text-xl lg:text-2xl border border-neutral-200/80 dark:border-white/10 flex items-center justify-center cursor-pointer">0</button>
+            <button type="button" data-math="." class="adaptive-math-key math-key spring-btn py-2 sm:py-2.5 lg:py-3 rounded-2xl bg-fadv-surface dark:bg-fadv-dark/80 hover:bg-neutral-200/70 dark:hover:bg-white/10 text-neutral-900 dark:text-white font-mono font-extrabold text-lg sm:text-xl lg:text-2xl border border-neutral-200/80 dark:border-white/10 flex items-center justify-center cursor-pointer">.</button>
+            <button type="button" data-math="=" class="adaptive-math-key math-key spring-btn py-2 sm:py-2.5 lg:py-3 rounded-2xl bg-fadv-green hover:bg-fadv-greenHover text-white font-mono font-extrabold text-lg sm:text-xl lg:text-2xl shadow-lg shadow-fadv-green/25 flex items-center justify-center cursor-pointer">=</button>
           </div>
 
         </div>
@@ -1724,13 +1748,13 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
     </div>
   </div>
 
-  <!-- Clear, Readable Bottom-Left Version Badge (Unobtrusive, away from the First Advantage header logo) -->
+  <!-- Clear, Readable Version Badge (Hides automatically whenever it would touch/overlap the calculator card) -->
   <div id="appVersionCorner" class="select-none pointer-events-none">
     <span 
       id="appVersionBadge" 
       class="px-2.5 py-1 rounded-lg text-xs sm:text-sm font-mono font-extrabold bg-fadv-ivory/90 dark:bg-fadv-forest/90 text-neutral-700 dark:text-neutral-200 border border-fadv-sandBorder dark:border-white/15 shadow-sm"
     >
-      v1.6.0
+      v1.7.0
     </span>
   </div>
 
@@ -1773,7 +1797,7 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
   </div>
 
   <script>
-    const APP_VERSION = '1.6.0';
+    const APP_VERSION = '1.7.0';
     const MIN_UPDATE_DURATION_MS = 5000;
     let isDarkMode = false;
 
@@ -1782,7 +1806,6 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
     const MIN_WIN_OUTER_H = 600;
 
     function enforceMinimumWindowBounds() {
-      // In installed desktop standalone PWA windows, prevent resizing smaller than the usable UI bounds
       const isTouchDevice = window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
       if (!isTouchDevice && typeof window.resizeTo === 'function') {
         const curW = window.outerWidth || window.innerWidth;
@@ -1802,10 +1825,13 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
       const wrapperEl = document.getElementById('panelScaleWrapper');
       const footerEl = document.getElementById('appFooter');
       const verCornerEl = document.getElementById('appVersionCorner');
+      const mathPanel = document.getElementById('panelMath');
+      const mathKeys = document.querySelectorAll('#mathKeypadGrid .math-key');
+
       const panels = [
         document.getElementById('panelDuration'),
         document.getElementById('panelDateGap'),
-        document.getElementById('panelMath')
+        mathPanel
       ];
       const activePanel = panels[currentTabIndex];
       if (!mainEl || !wrapperEl || !activePanel) return;
@@ -1813,73 +1839,93 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
       wrapperEl.style.transform = '';
       wrapperEl.style.transformOrigin = 'center center';
 
+      // Reset Standard Calculator button heights to their natural default first
+      mathKeys.forEach(btn => {
+        btn.style.height = '';
+      });
+
       const vw = window.innerWidth;
       const vh = window.innerHeight;
+      const availW = Math.max(320, mainEl.clientWidth - 16);
+      const availH = Math.max(300, mainEl.clientHeight - 12);
 
-      if (vw <= 640) {
-        mainEl.style.overflowY = 'auto';
-        mainEl.style.alignItems = 'flex-start';
-        if (footerEl) footerEl.style.display = 'none';
-        return;
-      }
-
-      const availW = Math.max(420, mainEl.clientWidth - 16);
-      const availH = Math.max(380, mainEl.clientHeight - 10);
-      const natW = activePanel.offsetWidth || 1;
-      const natH = activePanel.offsetHeight || 1;
-
-      const rawScale = Math.min(1, availW / natW, availH / natH);
-
-      // Lock minimum scale floor so the calculator never shrinks into a tiny unreadable box
-      if (rawScale >= 0.88) {
-        mainEl.style.overflowY = 'hidden';
-        mainEl.style.alignItems = 'center';
-        if (rawScale < 0.995) {
-          wrapperEl.style.transform = `scale(${rawScale.toFixed(3)})`;
-        }
-      } else {
-        const cappedScale = Math.max(0.88, Math.min(1, availW / natW));
-        mainEl.style.overflowY = 'auto';
-        mainEl.style.alignItems = 'flex-start';
-        if (cappedScale < 0.995) {
-          wrapperEl.style.transformOrigin = 'top center';
-          wrapperEl.style.transform = `scale(${cappedScale.toFixed(3)})`;
-        }
-      }
-
-      const panelRect = activePanel.getBoundingClientRect();
-
-      // Subtle signature visibility: ONLY show when the window is spacious AND has plenty of room
-      // around the calculator card; hide completely in smaller/corner windows!
-      if (footerEl) {
-        if (vw < 1024 || vh < 700) {
-          footerEl.style.display = 'none';
-        } else {
-          footerEl.style.display = 'flex';
-          const sigRect = footerEl.getBoundingClientRect();
-          const hasRightRoom = (vw - panelRect.right) >= (sigRect.width + 32);
-          const hasBottomRoom = (vh - panelRect.bottom) >= (sigRect.height + 20);
-          if (!hasRightRoom && !hasBottomRoom) {
-            footerEl.style.display = 'none';
+      // Standard Calculator Dynamic Button Height Expansion (up to MAX +30% when blank space exists below)
+      if (currentTabIndex === 2 && mathKeys.length > 0) {
+        const baseKeyH = mathKeys[0].offsetHeight || 44;
+        const currentMathH = mathPanel.offsetHeight || 1;
+        const extraSpaceBelow = availH - currentMathH;
+        if (extraSpaceBelow > 12) {
+          const maxAllowedKeyH = Math.round(baseKeyH * 1.30); // Strictly capped at +30% max
+          const desiredAddPerRow = Math.floor(extraSpaceBelow / 5.2);
+          const newKeyH = Math.min(maxAllowedKeyH, baseKeyH + desiredAddPerRow);
+          if (newKeyH > baseKeyH) {
+            mathKeys.forEach(btn => {
+              btn.style.height = `${newKeyH}px`;
+            });
           }
         }
       }
 
-      // Ensure bottom-left version badge never overlaps the calculator card
-      if (verCornerEl) {
-        verCornerEl.style.display = 'block';
-        const verRect = verCornerEl.getBoundingClientRect();
-        const overlapsX = panelRect.left < (verRect.right + 12);
-        const overlapsY = panelRect.bottom > (verRect.top - 8);
-        if (overlapsX && overlapsY) {
-          verCornerEl.style.display = 'none';
+      if (vw <= 640) {
+        const natH = activePanel.offsetHeight || 1;
+        mainEl.style.overflowY = natH > availH ? 'auto' : 'hidden';
+        mainEl.style.alignItems = natH <= availH ? 'center' : 'flex-start';
+      } else {
+        const natW = activePanel.offsetWidth || 1;
+        const natH = activePanel.offsetHeight || 1;
+        const rawScale = Math.min(1, availW / natW, availH / natH);
+
+        if (rawScale >= 0.88) {
+          mainEl.style.overflowY = 'hidden';
+          mainEl.style.alignItems = 'center';
+          if (rawScale < 0.995) {
+            wrapperEl.style.transform = `scale(${rawScale.toFixed(3)})`;
+          }
+        } else {
+          const cappedScale = Math.max(0.88, Math.min(1, availW / natW));
+          mainEl.style.overflowY = 'auto';
+          mainEl.style.alignItems = (natH * cappedScale <= availH) ? 'center' : 'flex-start';
+          if (cappedScale < 0.995) {
+            wrapperEl.style.transformOrigin = 'top center';
+            wrapperEl.style.transform = `scale(${cappedScale.toFixed(3)})`;
+          }
         }
       }
+
+      // Check post-layout bounding boxes so neither the signature nor the version badge EVER overlaps the calculator UI
+      requestAnimationFrame(() => {
+        const panelRect = activePanel.getBoundingClientRect();
+
+        if (footerEl) {
+          if (vw < 1024 || vh < 700) {
+            footerEl.style.display = 'none';
+          } else {
+            footerEl.style.display = 'flex';
+            const sigRect = footerEl.getBoundingClientRect();
+            const hasRightRoom = (vw - panelRect.right) >= (sigRect.width + 28);
+            const hasBottomRoom = (vh - panelRect.bottom) >= (sigRect.height + 18);
+            if (!hasRightRoom && !hasBottomRoom) {
+              footerEl.style.display = 'none';
+            }
+          }
+        }
+
+        if (verCornerEl) {
+          verCornerEl.style.display = 'block';
+          const verRect = verCornerEl.getBoundingClientRect();
+          const hasLeftClearance = panelRect.left >= (verRect.right + 16);
+          const hasBottomClearance = (vh - panelRect.bottom) >= (verRect.height + 20);
+          // Only show the version badge if there is clean blank space to the left OR below the calculator card
+          if (!hasLeftClearance && !hasBottomClearance) {
+            verCornerEl.style.display = 'none';
+          }
+        }
+      });
     }
     window.addEventListener('resize', fitActivePanelToViewport);
 
     // ============================================================================
-    // HERO LAUNCH TRANSITION: "FA Calculator" slides from Splash into App Header!
+    // SMOOTH GLIDE OF "FA Calculator" FROM SPLASH SCREEN TO TOP HEADER!
     // ============================================================================
     function runSplashToHeaderTransition() {
       const splash = document.getElementById('launchSplashOverlay');
@@ -1890,22 +1936,29 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
 
       if (!splash || !splashTitle || !headerTitle) return;
 
-      // Hide the app's header title initially so it appears to arrive from the splash screen
+      // Hide the app's header title initially so the splash title glides right into its spot
       headerTitle.style.opacity = '0';
 
-      // At t = 2.15s, "FirstAdvantage" has finished morphing into "FA Calculator".
-      // Now slide and scale "FA Calculator" from the center splash screen directly into #mainHeaderTitle!
+      // At t = 1.95s, "FirstAdvantage" has completed morphing into "FA Calculator" in the center.
       setTimeout(() => {
         if (splash.classList.contains('updating-mode')) {
           headerTitle.style.opacity = '1';
           return;
         }
 
-        // Switch F and A to 900 weight to match the exact header font weight
+        // Lock the morphed child spans so they stay cleanly as "FA Calculator" during the flight
+        const c1 = splashTitle.querySelector('.morph-collapse-irst');
+        const c2 = splashTitle.querySelector('.morph-collapse-dvantage');
+        const ex = splashTitle.querySelector('.morph-expand-calc');
+        if (c1) { c1.style.animation = 'none'; c1.style.maxWidth = '0px'; c1.style.opacity = '0'; }
+        if (c2) { c2.style.animation = 'none'; c2.style.maxWidth = '0px'; c2.style.opacity = '0'; }
+        if (ex) { ex.style.animation = 'none'; ex.style.maxWidth = '12ch'; ex.style.opacity = '1'; ex.style.transform = 'none'; }
+
         splashTitle.querySelectorAll('.morph-char-f, .morph-char-a').forEach(el => {
           el.style.fontWeight = '900';
         });
 
+        // Measure exact center coordinates of the splash "FA Calculator" and the header "FA Calculator"
         const sRect = splashTitle.getBoundingClientRect();
         const hRect = headerTitle.getBoundingClientRect();
 
@@ -1914,22 +1967,24 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
           const dy = (hRect.top + hRect.height / 2) - (sRect.top + sRect.height / 2);
           const scale = hRect.height / sRect.height;
 
-          splashTitle.style.transition = 'transform 0.68s cubic-bezier(0.22, 1, 0.36, 1)';
+          // Force layout flush and smoothly glide "FA Calculator" up into the header slot
+          void splashTitle.offsetWidth;
+          splashTitle.style.transition = 'transform 0.72s cubic-bezier(0.22, 1, 0.36, 1)';
           splashTitle.style.transformOrigin = 'center center';
-          splashTitle.style.transform = `translate(${dx.toFixed(1)}px, ${dy.toFixed(1)}px) scale(${scale.toFixed(3)})`;
+          splashTitle.style.transform = `translate3d(${dx.toFixed(1)}px, ${dy.toFixed(1)}px, 0) scale(${scale.toFixed(3)})`;
         }
 
         if (splashIcon) splashIcon.classList.add('splash-icon-exit');
         if (backdrop) backdrop.classList.add('splash-fade-out');
 
-        // Right as the flying title settles onto the header title, reveal the real header title and hide the splash overlay
+        // Right as the gliding "FA Calculator" lands in the header slot, show #mainHeaderTitle and hide the overlay
         setTimeout(() => {
           headerTitle.style.opacity = '1';
           if (!splash.classList.contains('updating-mode')) {
             splash.style.display = 'none';
           }
-        }, 680);
-      }, 2150);
+        }, 720);
+      }, 1950);
     }
 
     let durationOperation = 'add';
@@ -1946,14 +2001,12 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
     let mathOperator = null;
     let mathShouldResetScreen = false;
 
-    // Waiting Service Worker reference for user-controlled app updates
     let waitingServiceWorker = null;
 
-    // Per-Tab Calculation History (Up to 10 entries per tab)
     const tabHistories = {
-      0: [], // Tab 0: ± Duration
-      1: [], // Tab 1: Date Difference
-      2: []  // Tab 2: Standard Calculator
+      0: [],
+      1: [],
+      2: []
     };
 
     const MONTH_NAMES = [
@@ -1989,11 +2042,9 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
         inputEl.addEventListener('input', (e) => {
           const rawDigits = inputEl.value.replace(/\D/g, '');
           if (!rawDigits) {
-            // Allow temporarily empty while backspacing, will restore to '0' on blur
             inputEl.value = '';
             return;
           }
-          // If the user pressed backspace on "09", let it become "0"
           if (e.inputType === 'deleteContentBackward' && rawDigits === '0') {
             inputEl.value = '0';
             return;
@@ -2234,6 +2285,117 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
       return { m, d, y, formatted, date: new Date(y, m - 1, d) };
     }
 
+    // ============================================================================
+    // PER-SEGMENT DATE VALIDATION & RED HIGHLIGHT MIRROR (MM / DD / YYYY)
+    // ============================================================================
+    function escapeHtml(s) {
+      return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    }
+
+    function analyzeDateSegments(str) {
+      if (!str) {
+        return { mInvalid: false, dInvalid: false, yInvalid: false, mirrorHtml: '' };
+      }
+
+      const parts = str.split('/');
+      const mmStr = parts[0] || '';
+      const ddStr = parts.length > 1 ? parts[1] : null;
+      const yyyyStr = parts.length > 2 ? parts.slice(2).join('/') : null;
+
+      let mInvalid = false;
+      let dInvalid = false;
+      let yInvalid = false;
+
+      let mVal = null;
+      if (mmStr.length > 0) {
+        if (!/^\d+$/.test(mmStr)) {
+          mInvalid = true;
+        } else {
+          mVal = parseInt(mmStr, 10);
+          if (mmStr.length >= 2 && (mVal < 1 || mVal > 12)) {
+            mInvalid = true;
+          } else if (mmStr.length === 1 && ddStr !== null && mVal < 1) {
+            mInvalid = true;
+          }
+        }
+      }
+
+      let yVal = null;
+      if (yyyyStr !== null && yyyyStr.length > 0) {
+        if (!/^\d+$/.test(yyyyStr)) {
+          yInvalid = true;
+        } else {
+          yVal = parseInt(yyyyStr, 10);
+          if (yyyyStr.length === 1 && yyyyStr !== '1' && yyyyStr !== '2') {
+            yInvalid = true;
+          } else if (yyyyStr.length >= 2) {
+            const prefix2 = parseInt(yyyyStr.substring(0, 2), 10);
+            if (prefix2 < 18 || prefix2 > 22) {
+              yInvalid = true;
+            }
+          }
+          if (yyyyStr.length === 4 && (yVal < 1800 || yVal > 2200)) {
+            yInvalid = true;
+          }
+        }
+      }
+
+      if (ddStr !== null && ddStr.length > 0) {
+        if (!/^\d+$/.test(ddStr)) {
+          dInvalid = true;
+        } else {
+          const dVal = parseInt(ddStr, 10);
+          let maxDays = 31;
+          if (mVal !== null && mVal >= 1 && mVal <= 12) {
+            const checkYear = (yVal !== null && yyyyStr && yyyyStr.length === 4 && !yInvalid) ? yVal : 2024;
+            maxDays = new Date(checkYear, mVal, 0).getDate();
+          }
+          if (ddStr.length >= 2 && (dVal < 1 || dVal > maxDays)) {
+            dInvalid = true;
+          } else if (ddStr.length === 1 && yyyyStr !== null && dVal < 1) {
+            dInvalid = true;
+          }
+        }
+      }
+
+      let html = '';
+      if (mmStr) {
+        html += mInvalid ? `<span class="seg-invalid">${escapeHtml(mmStr)}</span>` : `<span>${escapeHtml(mmStr)}</span>`;
+      }
+      if (ddStr !== null) {
+        html += `<span>/</span>`;
+        if (ddStr) {
+          html += dInvalid ? `<span class="seg-invalid">${escapeHtml(ddStr)}</span>` : `<span>${escapeHtml(ddStr)}</span>`;
+        }
+      }
+      if (yyyyStr !== null) {
+        html += `<span>/</span>`;
+        if (yyyyStr) {
+          html += yInvalid ? `<span class="seg-invalid">${escapeHtml(yyyyStr)}</span>` : `<span>${escapeHtml(yyyyStr)}</span>`;
+        }
+      }
+
+      return { mInvalid, dInvalid, yInvalid, mirrorHtml: html };
+    }
+
+    function updateDateMirrorOverlay(inputEl) {
+      if (!inputEl) return;
+      const mirrorId = inputEl.id.replace('Input', 'Mirror');
+      const mirrorEl = document.getElementById(mirrorId);
+      if (!mirrorEl) return;
+
+      const val = inputEl.value;
+      if (!val) {
+        inputEl.classList.remove('has-mirror-text');
+        mirrorEl.innerHTML = '';
+        return;
+      }
+
+      const analysis = analyzeDateSegments(val);
+      inputEl.classList.add('has-mirror-text');
+      mirrorEl.innerHTML = analysis.mirrorHtml;
+    }
+
     function bindSmartDateInput(inputEl, msgEl, defaultText) {
       inputEl.addEventListener('paste', (e) => {
         e.preventDefault();
@@ -2287,6 +2449,8 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
     }
 
     function validateDateField(inputEl, msgEl, defaultText) {
+      updateDateMirrorOverlay(inputEl);
+
       const str = inputEl.value.trim();
       const parsed = parseMMDDYYYY(str);
       if (!str) {
@@ -2922,6 +3086,13 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
 
     function triggerDisappearAnimation(el) {
       if (!el) return;
+      const mirrorId = el.id ? el.id.replace('Input', 'Mirror') : '';
+      const mirrorEl = mirrorId ? document.getElementById(mirrorId) : null;
+      if (mirrorEl) {
+        mirrorEl.classList.remove('animate-value-clear');
+        void mirrorEl.offsetWidth;
+        mirrorEl.classList.add('animate-value-clear');
+      }
       el.classList.remove('animate-value-clear');
       void el.offsetWidth;
       el.classList.add('animate-value-clear');
@@ -3077,6 +3248,7 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
       const durationDays = document.getElementById('durationDays');
 
       toInput.value = todayMMDDYYYY;
+      updateDateMirrorOverlay(toInput);
 
       // Bind Custom Rounded Stepper Buttons for Years, Months, Days
       document.querySelectorAll('[data-step-target]').forEach(btn => {
@@ -3268,6 +3440,7 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
       document.getElementById('toResetTodayBtn').addEventListener('click', () => {
         triggerDisappearAnimation(toInput);
         toInput.value = todayMMDDYYYY;
+        updateDateMirrorOverlay(toInput);
         toMsg.className = 'text-xs sm:text-sm font-semibold text-fadv-green dark:text-fadv-lime';
         toMsg.textContent = 'Default: Today\'s Date';
         showSuccessToast('To Date reset to Today');
@@ -3290,6 +3463,8 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
 
         fromInput.value = '';
         toInput.value = todayMMDDYYYY;
+        updateDateMirrorOverlay(fromInput);
+        updateDateMirrorOverlay(toInput);
         fromMsg.className = 'text-xs lg:text-sm font-semibold text-neutral-500 dark:text-neutral-400';
         fromMsg.textContent = 'Type or paste with Ctrl+V';
         toMsg.className = 'text-xs lg:text-sm font-semibold text-fadv-green dark:text-fadv-lime';
@@ -3325,6 +3500,7 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
         triggerDisappearAnimation(document.getElementById('targetDayOfWeek'));
 
         startInput.value = '';
+        updateDateMirrorOverlay(startInput);
         durationYears.value = '0';
         durationMonths.value = '0';
         durationDays.value = '0';
@@ -3335,7 +3511,6 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
         startInput.focus();
       });
 
-      // "Use as Start Date" Button Handler (Chained Multi-Step Date Calculation)
       document.getElementById('useAsStartDateBtn').addEventListener('click', () => {
         const val = document.getElementById('targetCalculatedDate').textContent.trim();
         if (!val || val.includes('--')) {
@@ -3382,6 +3557,7 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
         }
 
         startInput.value = startParsed.formatted;
+        updateDateMirrorOverlay(startInput);
 
         const y = parseInt(durationYears.value, 10) || 0;
         const m = parseInt(durationMonths.value, 10) || 0;
@@ -3429,6 +3605,8 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
 
         fromInput.value = fromParsed.formatted;
         toInput.value = toParsed.formatted;
+        updateDateMirrorOverlay(fromInput);
+        updateDateMirrorOverlay(toInput);
 
         const diff = calculateExactDifference(fromParsed.date, toParsed.date);
         const yStr = `${diff.diffYears} ${diff.diffYears === 1 ? 'Year' : 'Years'}`;
