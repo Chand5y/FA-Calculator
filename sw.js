@@ -1,4 +1,6 @@
-const CACHE_NAME = 'fa-calc-v13';
+const ACTIVE_CACHE = 'fa-calc-active-v1';
+const STAGED_CACHE = 'fa-calc-staged-v1';
+const SW_VERSION = '1.4.0';
 const ASSETS = [
   './',
   './index.html',
@@ -9,13 +11,36 @@ const ASSETS = [
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.addAll(ASSETS))
+    caches.open(ACTIVE_CACHE).then(async (activeCache) => {
+      const existing = await activeCache.match('./index.html');
+      if (!existing) {
+        // First-time installation: populate active cache immediately for 100% offline use
+        await activeCache.addAll(ASSETS);
+      } else {
+        // Update detected: download into STAGED_CACHE only so it NEVER auto-installs on next launch!
+        const stagedCache = await caches.open(STAGED_CACHE);
+        await stagedCache.addAll(ASSETS);
+      }
+    })
   );
 });
 
 self.addEventListener('message', (event) => {
-  if (event.data && event.data.type === 'SKIP_WAITING') {
-    self.skipWaiting();
+  if (event.data && (event.data.type === 'APPLY_UPDATE' || event.data.type === 'SKIP_WAITING')) {
+    event.waitUntil(
+      (async () => {
+        const activeCache = await caches.open(ACTIVE_CACHE);
+        const stagedCache = await caches.open(STAGED_CACHE);
+        for (const asset of ASSETS) {
+          const stagedResp = await stagedCache.match(asset);
+          if (stagedResp) {
+            await activeCache.put(asset, stagedResp.clone());
+          }
+        }
+        await caches.delete(STAGED_CACHE);
+        await self.skipWaiting();
+      })()
+    );
   }
 });
 
@@ -23,7 +48,7 @@ self.addEventListener('activate', (event) => {
   event.waitUntil(
     caches.keys().then((keys) => {
       return Promise.all(
-        keys.filter((key) => key !== CACHE_NAME).map((key) => caches.delete(key))
+        keys.filter((key) => key !== ACTIVE_CACHE && key !== STAGED_CACHE).map((key) => caches.delete(key))
       );
     }).then(() => self.clients.claim())
   );
@@ -31,9 +56,16 @@ self.addEventListener('activate', (event) => {
 
 self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET') return;
+  const url = new URL(event.request.url);
+  if (url.searchParams.has('_sw_check') || url.searchParams.has('_sw_apply')) {
+    event.respondWith(fetch(event.request));
+    return;
+  }
   event.respondWith(
-    caches.match(event.request).then((cachedResponse) => {
-      return cachedResponse || fetch(event.request).catch(() => caches.match('./index.html'));
+    caches.open(ACTIVE_CACHE).then((cache) => {
+      return cache.match(event.request).then((cachedResponse) => {
+        return cachedResponse || fetch(event.request).catch(() => cache.match('./index.html'));
+      });
     })
   );
 });
