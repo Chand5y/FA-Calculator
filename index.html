@@ -1030,9 +1030,52 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
     }
 
     .tilt-card {
+      position: relative;
       transform-style: preserve-3d;
-      transition: transform 0.32s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.32s cubic-bezier(0.22, 1, 0.36, 1), -webkit-filter 0.32s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.28s ease, background-color 0.3s ease, border-color 0.3s ease;
-      will-change: transform, filter;
+      transition: transform 0.32s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.28s ease, background-color 0.3s ease, border-color 0.3s ease;
+      will-change: transform;
+    }
+    /* Directional Depth-of-Field Blur Overlay:
+       Maximum blur at the pressed edge/point, tapering smoothly to 0% blur at the center (50%) of the card,
+       leaving the opposite half 100% sharp and in focus! */
+    .card-dof-overlay {
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      pointer-events: none;
+      z-index: 35;
+      opacity: 0;
+      backdrop-filter: blur(3.6px);
+      -webkit-backdrop-filter: blur(3.6px);
+      transition: opacity 0.26s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: opacity;
+    }
+    .card-dof-overlay.dof-active {
+      opacity: 1;
+    }
+
+    /* Ensure Calendar Month & Year Dropdown Menus are 100% legible without underlying day numbers bleeding through */
+    #calMonthMenu,
+    #calYearMenu {
+      background: rgba(251, 248, 245, 0.97) !important;
+      backdrop-filter: blur(28px) saturate(160%) !important;
+      -webkit-backdrop-filter: blur(28px) saturate(160%) !important;
+    }
+    html.dark #calMonthMenu,
+    html.dark #calYearMenu {
+      background: rgba(11, 33, 23, 0.97) !important;
+      backdrop-filter: blur(28px) saturate(160%) !important;
+      -webkit-backdrop-filter: blur(28px) saturate(160%) !important;
+    }
+    #customCalendarPopover #calDaysGrid,
+    #customCalendarPopover .cal-weekdays-row {
+      transition: opacity 0.2s ease, filter 0.2s ease;
+    }
+    #customCalendarPopover.cal-submenu-open #calDaysGrid,
+    #customCalendarPopover.cal-submenu-open .cal-weekdays-row {
+      opacity: 0.06 !important;
+      filter: blur(5px) !important;
+      pointer-events: none !important;
     }
 
     @keyframes calendarPopIn {
@@ -2002,7 +2045,7 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
           <div class="min-w-0">
             <span class="block text-[10px] font-bold uppercase tracking-wider text-neutral-500 dark:text-neutral-400">Current Version</span>
             <span id="settingsVersionStatus" class="block text-[11px] font-semibold text-neutral-600 dark:text-neutral-300 truncate mt-0.5">
-              v1.9.2
+              v1.9.3
             </span>
           </div>
           <div class="flex items-center gap-1.5 shrink-0">
@@ -2106,7 +2149,7 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
       ></div>
     </div>
 
-    <div class="grid grid-cols-7 gap-1 text-center text-[11px] font-extrabold uppercase tracking-wider text-neutral-400 dark:text-neutral-400 mb-2">
+    <div class="cal-weekdays-row grid grid-cols-7 gap-1 text-center text-[11px] font-extrabold uppercase tracking-wider text-neutral-400 dark:text-neutral-400 mb-2">
       <div>Su</div><div>Mo</div><div>Tu</div><div>We</div><div>Th</div><div>Fr</div><div>Sa</div>
     </div>
 
@@ -2128,7 +2171,7 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
       id="appVersionBadge" 
       class="px-2.5 py-1 rounded-lg text-xs sm:text-sm font-mono font-extrabold bg-fadv-ivory/90 dark:bg-fadv-forest/90 text-neutral-700 dark:text-neutral-200 border border-fadv-sandBorder dark:border-white/15 shadow-sm"
     >
-      v1.9.2
+      v1.9.3
     </span>
   </div>
 
@@ -2171,7 +2214,7 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
   </div>
 
   <script>
-    const APP_VERSION = '1.9.2';
+    const APP_VERSION = '1.9.3';
     const MIN_UPDATE_DURATION_MS = 5000;
     let isDarkMode = false;
 
@@ -2898,10 +2941,17 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
         const dx = endX - startX;
         const dy = endY - startY;
 
-        // Clear result box & reset durations as the date lifts off, while keeping Start Date untouched until landing!
+        // Immediately clear the old Start Date AND reset Years/Months/Days to 0 at the exact same moment,
+        // so the Start Date box is completely blank and ready for the flying date to settle into!
+        triggerDisappearAnimation(startInput);
         triggerDisappearAnimation(durationYears);
         triggerDisappearAnimation(durationMonths);
         triggerDisappearAnimation(durationDays);
+        startInput.value = '';
+        updateDateMirrorOverlay(startInput);
+        startMsg.className = 'text-xs sm:text-sm font-semibold text-neutral-500 dark:text-neutral-400';
+        startMsg.textContent = 'Transferring target date...';
+
         durationYears.value = '0';
         durationMonths.value = '0';
         durationDays.value = '0';
@@ -2910,19 +2960,18 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
         targetDayEl.textContent = '';
         targetDayEl.classList.add('hidden');
 
-        // Animate the flying date along a physical upward curve directly into Start Date
+        // Animate the flying date along a smooth upward curve into the blank Start Date field
         const flight = flyer.animate([
           { transform: 'translate3d(0px, 0px, 0) scale(1)', opacity: 1, offset: 0 },
-          { transform: `translate3d(${(dx * 0.45 - 14).toFixed(1)}px, ${(dy * 0.55 - 18).toFixed(1)}px, 0) scale(1.08)`, opacity: 1, offset: 0.52 },
-          { transform: `translate3d(${dx.toFixed(1)}px, ${dy.toFixed(1)}px, 0) scale(1)`, opacity: 1, offset: 0.94 },
-          { transform: `translate3d(${dx.toFixed(1)}px, ${dy.toFixed(1)}px, 0) scale(0.96)`, opacity: 0, offset: 1 }
+          { transform: `translate3d(${(dx * 0.45 - 12).toFixed(1)}px, ${(dy * 0.55 - 16).toFixed(1)}px, 0) scale(1.06)`, opacity: 1, offset: 0.52 },
+          { transform: `translate3d(${dx.toFixed(1)}px, ${dy.toFixed(1)}px, 0) scale(0.98)`, opacity: 1, offset: 0.92 },
+          { transform: `translate3d(${dx.toFixed(1)}px, ${dy.toFixed(1)}px, 0) scale(0.95)`, opacity: 0, offset: 1 }
         ], {
           duration: 460,
           easing: 'cubic-bezier(0.22, 1, 0.36, 1)',
           fill: 'forwards'
         });
 
-        // Swap the Start Date value at the exact moment of impact (94% of flight, ~432ms) so there is zero lag!
         setTimeout(() => {
           startInput.value = dateStr;
           validateDateField(startInput, startMsg, 'Type or paste with Ctrl+V');
@@ -3247,10 +3296,15 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
       }
 
       try {
-        if (reg) {
-          await reg.update().catch(() => {});
+        if (reg && typeof reg.update === 'function') {
+          reg.update().catch(() => {});
         }
-        const resp = await fetch('./index.html?_sw_check=' + Date.now(), { cache: 'no-store' });
+        const controller = typeof AbortController !== 'undefined' ? new AbortController() : null;
+        const timeoutId = controller ? setTimeout(() => controller.abort(), 3000) : null;
+        const fetchOpts = { cache: 'no-store' };
+        if (controller) fetchOpts.signal = controller.signal;
+        const resp = await fetch('./index.html?_sw_check=' + Date.now(), fetchOpts);
+        if (timeoutId) clearTimeout(timeoutId);
         if (!resp || !resp.ok) {
           if (isManualCheck) {
             if (settingsVerStatus) {
@@ -3427,8 +3481,10 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
     }
 
     function closeCalendarSubMenus() {
+      const popover = document.getElementById('customCalendarPopover');
       const monthMenu = document.getElementById('calMonthMenu');
       const yearMenu = document.getElementById('calYearMenu');
+      if (popover) popover.classList.remove('cal-submenu-open');
       if (monthMenu) {
         monthMenu.classList.add('hidden');
         monthMenu.classList.remove('animate-dropdown-in');
@@ -3504,6 +3560,7 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
         const isHidden = monthMenu.classList.contains('hidden');
         closeCalendarSubMenus();
         if (isHidden) {
+          popover.classList.add('cal-submenu-open');
           renderMonthMenu();
           monthMenu.classList.remove('hidden');
           void monthMenu.offsetWidth;
@@ -3516,6 +3573,7 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
         const isHidden = yearMenu.classList.contains('hidden');
         closeCalendarSubMenus();
         if (isHidden) {
+          popover.classList.add('cal-submenu-open');
           renderYearMenu();
           yearMenu.classList.remove('hidden');
           void yearMenu.offsetWidth;
@@ -3899,26 +3957,54 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
     function initLocalizedCardPressPhysics() {
       const cards = document.querySelectorAll('.tilt-card');
       cards.forEach(card => {
+        // Create directional depth-of-field blur overlay inside each tilt-card
+        let dofOverlay = card.querySelector(':scope > .card-dof-overlay');
+        if (!dofOverlay) {
+          dofOverlay = document.createElement('div');
+          dofOverlay.className = 'card-dof-overlay';
+          card.appendChild(dofOverlay);
+        }
+
         card.addEventListener('pointerdown', (e) => {
           if (e.target.closest('input, button, a, select, label')) return;
           if (e.target.closest('.tilt-card') !== card) return;
 
           const rect = card.getBoundingClientRect();
-          const relX = (e.clientX - rect.left) / rect.width - 0.5;
-          const relY = (e.clientY - rect.top) / rect.height - 0.5;
+          const pctX = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+          const pctY = Math.max(0, Math.min(1, (e.clientY - rect.top) / rect.height));
+          const relX = pctX - 0.5;
+          const relY = pctY - 0.5;
 
-          const maxTiltDeg = 1.6;
+          const maxTiltDeg = 1.7;
           const rotateY = relX * maxTiltDeg * 2;
           const rotateX = -relY * maxTiltDeg * 2;
 
-          // Smoothly push card back and apply subtle out-of-focus depth blur
+          // Compute CSS linear-gradient angle from the pressed edge/point toward the opposite side:
+          // - Press Left (relX = -0.5, relY = 0) -> 90deg (Left to Right)
+          // - Press Right (relX = +0.5, relY = 0) -> 270deg (Right to Left)
+          // - Press Top (relX = 0, relY = -0.5) -> 180deg (Top to Bottom)
+          // - Press Bottom (relX = 0, relY = +0.5) -> 0deg (Bottom to Top)
+          const cssAngle = (Math.atan2(-relX, relY) * (180 / Math.PI) + 360) % 360;
+
+          // Distance from center (0 at center, ~0.5 at edge) scales the peak blur intensity naturally
+          const edgeDist = Math.min(1, Math.hypot(relX, relY) * 2.1);
+          const maxAlpha = Math.max(0.55, edgeDist).toFixed(2);
+
+          // Gradual blur mask: strongest at 0% (pressed edge), fading smoothly to 0 at 50% (card center),
+          // and 0 from 50% to 100% so the opposite half of the card stays 100% sharp!
+          const maskGrad = `linear-gradient(${cssAngle.toFixed(1)}deg, rgba(0,0,0,${maxAlpha}) 0%, rgba(0,0,0,${(maxAlpha * 0.65).toFixed(2)}) 16%, rgba(0,0,0,${(maxAlpha * 0.25).toFixed(2)}) 34%, rgba(0,0,0,0) 50%, rgba(0,0,0,0) 100%)`;
+          dofOverlay.style.webkitMaskImage = maskGrad;
+          dofOverlay.style.maskImage = maskGrad;
+          dofOverlay.classList.add('dof-active');
+
           card.style.transform = `perspective(1200px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) scale3d(0.995, 0.995, 1)`;
-          card.style.filter = 'blur(1.4px)';
         });
 
         const resetTilt = () => {
           card.style.transform = '';
-          card.style.filter = '';
+          if (dofOverlay) {
+            dofOverlay.classList.remove('dof-active');
+          }
         };
 
         card.addEventListener('pointerup', resetTilt);
@@ -4138,10 +4224,58 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
       toMsg.className = 'text-xs sm:text-sm font-semibold text-fadv-green dark:text-fadv-lime';
       toMsg.textContent = 'Default: Today\'s Date';
 
+      // Bind Custom Rounded Stepper Buttons with Press-and-Hold Continuous Stepping!
       document.querySelectorAll('[data-step-target]').forEach(btn => {
+        const targetId = btn.getAttribute('data-step-target');
+        const dir = parseInt(btn.getAttribute('data-step-dir'), 10);
+        let holdDelayTimer = null;
+        let holdRepeatTimer = null;
+        let stepCount = 0;
+        let handledByPointer = false;
+
+        const stopHoldStepping = () => {
+          if (holdDelayTimer) {
+            clearTimeout(holdDelayTimer);
+            holdDelayTimer = null;
+          }
+          if (holdRepeatTimer) {
+            clearTimeout(holdRepeatTimer);
+            holdRepeatTimer = null;
+          }
+          stepCount = 0;
+        };
+
+        const runContinuousStep = () => {
+          stepDurationInput(document.getElementById(targetId), dir);
+          stepCount++;
+          triggerHaptic(8);
+          // Smoothly accelerate as you keep holding
+          const nextInterval = stepCount > 12 ? 45 : (stepCount > 5 ? 70 : 105);
+          holdRepeatTimer = setTimeout(runContinuousStep, nextInterval);
+        };
+
+        btn.addEventListener('pointerdown', (e) => {
+          if (e.button && e.button !== 0) return;
+          e.preventDefault();
+          handledByPointer = true;
+          stopHoldStepping();
+          stepDurationInput(document.getElementById(targetId), dir);
+          holdDelayTimer = setTimeout(() => {
+            runContinuousStep();
+          }, 340);
+        });
+
+        btn.addEventListener('pointerup', stopHoldStepping);
+        btn.addEventListener('pointerleave', stopHoldStepping);
+        btn.addEventListener('pointercancel', stopHoldStepping);
+        btn.addEventListener('contextmenu', (e) => e.preventDefault());
+
+        // Keyboard accessibility fallback (Enter / Space when focused)
         btn.addEventListener('click', () => {
-          const targetId = btn.getAttribute('data-step-target');
-          const dir = parseInt(btn.getAttribute('data-step-dir'), 10);
+          if (handledByPointer) {
+            handledByPointer = false;
+            return;
+          }
           stepDurationInput(document.getElementById(targetId), dir);
         });
       });
