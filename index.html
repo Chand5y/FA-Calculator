@@ -19,6 +19,7 @@ svg { display: block; vertical-align: middle; }
 .backdrop-blur-md { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
 .bg-\[\#E3D8CC\]\/75 { background-color: rgba(227, 216, 204, 0.75); }
 .bg-\[\#F3ECE4\] { background-color: rgb(243, 236, 228); }
+.bg-\[\#F3ECE4\]\/85 { background-color: rgba(243, 236, 228, 0.85); }
 .bg-\[\#F3ECE4\]\/90 { background-color: rgba(243, 236, 228, 0.9); }
 .bg-fadv-dark { background-color: rgb(7, 23, 16); }
 .bg-fadv-dark\/95 { background-color: rgba(7, 23, 16, 0.95); }
@@ -39,6 +40,8 @@ svg { display: block; vertical-align: middle; }
 .bg-white { background-color: rgb(255, 255, 255); }
 .bg-white\/10 { background-color: rgba(255, 255, 255, 0.1); }
 .bg-white\/5 { background-color: rgba(255, 255, 255, 0.05); }
+.bg-white\/70 { background-color: rgba(255, 255, 255, 0.7); }
+.bg-white\/80 { background-color: rgba(255, 255, 255, 0.8); }
 .block { display: block; }
 .border { border-width: 1px; border-style: solid; }
 .border-2 { border-width: 2px; border-style: solid; }
@@ -55,7 +58,6 @@ svg { display: block; vertical-align: middle; }
 .border-red-500\/20 { border-color: rgba(239, 68, 68, 0.2); }
 .border-red-500\/50 { border-color: rgba(239, 68, 68, 0.5); }
 .border-t { border-top-width: 1px; border-top-style: solid; }
-.border-transparent { border-color: transparent; }
 .border-white\/10 { border-color: rgba(255, 255, 255, 0.1); }
 .bottom-0 { bottom: 0px; }
 .bottom-1 { bottom: 0.25rem; }
@@ -64,7 +66,6 @@ svg { display: block; vertical-align: middle; }
 .col-span-3 { grid-column: span 3 / span 3; }
 .col-span-6 { grid-column: span 6 / span 6; }
 .cursor-pointer { cursor: pointer; }
-.duration-200 { transition-duration: 200ms; }
 .duration-300 { transition-duration: 300ms; }
 .fill-\[\#E3DAD0\] { fill: rgb(227, 218, 208); }
 .fixed { position: fixed; }
@@ -87,9 +88,6 @@ svg { display: block; vertical-align: middle; }
 .gap-2\.5 { gap: 0.625rem; }
 .gap-3 { gap: 0.75rem; }
 .gap-3\.5 { gap: 0.875rem; }
-.gap-4 { gap: 1rem; }
-.gap-x-2\.5 { column-gap: 0.625rem; }
-.gap-y-0\.5 { row-gap: 0.125rem; }
 .grid { display: grid; }
 .grid-cols-1 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
 .grid-cols-12 { grid-template-columns: repeat(12, minmax(0, 1fr)); }
@@ -102,7 +100,6 @@ svg { display: block; vertical-align: middle; }
 .h-3\.5 { height: 0.875rem; }
 .h-4 { height: 1rem; }
 .h-5 { height: 1.25rem; }
-.h-6 { height: 1.5rem; }
 .h-9 { height: 2.25rem; }
 .h-auto { height: auto; }
 .h-full { height: 100%; }
@@ -119,7 +116,6 @@ svg { display: block; vertical-align: middle; }
 .hover\:bg-neutral-200\/60:hover { background-color: rgba(229, 229, 229, 0.6); }
 .hover\:bg-neutral-200\/70:hover { background-color: rgba(229, 229, 229, 0.7); }
 .hover\:bg-red-500\/20:hover { background-color: rgba(239, 68, 68, 0.2); }
-.hover\:bg-white\/50:hover { background-color: rgba(255, 255, 255, 0.5); }
 .hover\:border-fadv-green:hover { border-color: rgb(0, 166, 81); }
 .hover\:text-fadv-dark:hover { color: rgb(7, 23, 16); }
 .hover\:text-fadv-green:hover { color: rgb(0, 166, 81); }
@@ -127,7 +123,6 @@ svg { display: block; vertical-align: middle; }
 .hover\:text-neutral-900:hover { color: rgb(23, 23, 23); }
 .hover\:text-red-600:hover { color: rgb(220, 38, 38); }
 .hover\:text-white:hover { color: rgb(255, 255, 255); }
-.inline-block { display: inline-block; }
 .inline-flex { display: inline-flex; }
 .inset-0 { inset: 0px; }
 .items-baseline { align-items: baseline; }
@@ -143,7 +138,7 @@ svg { display: block; vertical-align: middle; }
 .left-5 { left: 1.25rem; }
 .max-h-56 { max-height: 14rem; }
 .max-h-72 { max-height: 18rem; }
-.max-h-\[84vh\] { max-height: 84vh; }
+.max-h-\[85vh\] { max-height: 85vh; }
 .max-w-4xl { max-width: 56rem; }
 .max-w-5xl { max-width: 64rem; }
 .max-w-\[580px\] { max-width: 580px; }
@@ -152,7 +147,6 @@ svg { display: block; vertical-align: middle; }
 .mb-1\.5 { margin-bottom: 0.375rem; }
 .mb-2 { margin-bottom: 0.5rem; }
 .mb-3 { margin-bottom: 0.75rem; }
-.mb-3\.5 { margin-bottom: 0.875rem; }
 .mb-4 { margin-bottom: 1rem; }
 .min-h-0 { min-height: 0px; }
 .min-w-0 { min-width: 0px; }
@@ -182,6 +176,7 @@ svg { display: block; vertical-align: middle; }
 .p-3\.5 { padding: 0.875rem; }
 .p-4 { padding: 1rem; }
 .p-5 { padding: 1.25rem; }
+.pb-2\.5 { padding-bottom: 0.625rem; }
 .pb-3 { padding-bottom: 0.75rem; }
 .pl-1\.5 { padding-left: 0.375rem; }
 .pl-3\.5 { padding-left: 0.875rem; }
@@ -189,6 +184,7 @@ svg { display: block; vertical-align: middle; }
 .pointer-events-none { pointer-events: none; }
 .pr-1 { padding-right: 0.25rem; }
 .pr-11 { padding-right: 2.75rem; }
+.pt-2\.5 { padding-top: 0.625rem; }
 .pt-3 { padding-top: 0.75rem; }
 .px-1\.5 { padding-left: 0.375rem; padding-right: 0.375rem; }
 .px-2 { padding-left: 0.5rem; padding-right: 0.5rem; }
@@ -212,6 +208,7 @@ svg { display: block; vertical-align: middle; }
 .rounded-3xl { border-radius: 1.5rem; }
 .rounded-full { border-radius: 9999px; }
 .rounded-lg { border-radius: 0.5rem; }
+.rounded-md { border-radius: 0.375rem; }
 .rounded-xl { border-radius: 0.75rem; }
 .select-none { user-select: none; }
 .select-text { user-select: text; }
@@ -247,6 +244,7 @@ svg { display: block; vertical-align: middle; }
 .text-red-600 { color: rgb(220, 38, 38); }
 .text-sm { font-size: 0.875rem; line-height: 1.25rem; }
 .text-white { color: rgb(255, 255, 255); }
+.text-white\/80 { color: rgba(255, 255, 255, 0.8); }
 .text-xl { font-size: 1.25rem; line-height: 1.75rem; }
 .text-xs { font-size: 0.75rem; line-height: 1rem; }
 .top-1 { top: 0.25rem; }
@@ -254,16 +252,12 @@ svg { display: block; vertical-align: middle; }
 .tracking-tight { letter-spacing: -0.025em; }
 .tracking-wide { letter-spacing: 0.025em; }
 .tracking-wider { letter-spacing: 0.05em; }
-.transform { transform: translate(0, 0); }
 .transition-all { transition-property: all; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 150ms; }
 .transition-colors { transition-property: color, background-color, border-color; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 150ms; }
-.transition-transform { transition-property: transform; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 150ms; }
-.translate-x-0 { transform: translateX(0px); }
 .translate-y-0 { transform: translateY(0px); }
 .translate-y-3 { transform: translateY(0.75rem); }
 .truncate { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .uppercase { text-transform: uppercase; }
-.w-11 { width: 2.75rem; }
 .w-2\.5 { width: 0.625rem; }
 .w-3\.5 { width: 0.875rem; }
 .w-4 { width: 1rem; }
@@ -287,6 +281,7 @@ html.dark .dark\:bg-fadv-dark\/75 { background-color: rgba(7, 23, 16, 0.75); }
 html.dark .dark\:bg-fadv-dark\/80 { background-color: rgba(7, 23, 16, 0.8); }
 html.dark .dark\:bg-fadv-dark\/90 { background-color: rgba(7, 23, 16, 0.9); }
 html.dark .dark\:bg-fadv-forest { background-color: rgb(13, 38, 27); }
+html.dark .dark\:bg-fadv-forest\/80 { background-color: rgba(13, 38, 27, 0.8); }
 html.dark .dark\:bg-fadv-forest\/90 { background-color: rgba(13, 38, 27, 0.9); }
 html.dark .dark\:bg-fadv-forest\/95 { background-color: rgba(13, 38, 27, 0.95); }
 html.dark .dark\:bg-fadv-green { background-color: rgb(0, 166, 81); }
@@ -295,7 +290,6 @@ html.dark .dark\:bg-fadv-green\/25 { background-color: rgba(0, 166, 81, 0.25); }
 html.dark .dark\:bg-fadv-lime { background-color: rgb(36, 209, 110); }
 html.dark .dark\:bg-white { background-color: rgb(255, 255, 255); }
 html.dark .dark\:bg-white\/15 { background-color: rgba(255, 255, 255, 0.15); }
-html.dark .dark\:bg-white\/20 { background-color: rgba(255, 255, 255, 0.2); }
 html.dark .dark\:block { display: block; }
 html.dark .dark\:border-fadv-green\/40 { border-color: rgba(0, 166, 81, 0.4); }
 html.dark .dark\:border-white\/10 { border-color: rgba(255, 255, 255, 0.1); }
@@ -312,7 +306,7 @@ html.dark .dark\:hover\:text-fadv-lime:hover { color: rgb(36, 209, 110); }
 html.dark .dark\:hover\:text-red-400:hover { color: rgb(248, 113, 113); }
 html.dark .dark\:hover\:text-white:hover { color: rgb(255, 255, 255); }
 html.dark .dark\:opacity-40 { opacity: 0.4; }
-html.dark .dark\:opacity-50 { opacity: 0.5; }
+html.dark .dark\:opacity-45 { opacity: 0.45; }
 html.dark .dark\:placeholder-neutral-600::placeholder { color: rgb(82, 82, 82); }
 html.dark .dark\:text-fadv-dark { color: rgb(7, 23, 16); }
 html.dark .dark\:text-fadv-lime { color: rgb(36, 209, 110); }
@@ -599,8 +593,6 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
       color: transparent;
     }
 
-    /* "irst" collapses to 0 width so "A" slides smoothly left right next to "F".
-       Bottom padding 0.26em prevents any descender clipping while overflow-x is hidden! */
     .morph-collapse-irst {
       display: inline-block;
       overflow: hidden;
@@ -613,7 +605,6 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
       animation: collapseFirstPart 1.90s cubic-bezier(0.22, 1, 0.36, 1) forwards;
     }
 
-    /* "dvantage" collapses to 0 width simultaneously without clipping the bottom loop of 'g'! */
     .morph-collapse-dvantage {
       display: inline-block;
       overflow: hidden;
@@ -626,7 +617,6 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
       animation: collapseAdvantagePart 1.90s cubic-bezier(0.22, 1, 0.36, 1) forwards;
     }
 
-    /* " Calculator" expands smoothly right after "FA" once "A" has slid next to "F" */
     .morph-expand-calc {
       display: inline-block;
       overflow: hidden;
@@ -793,83 +783,165 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
 
     /* ============================================================================ */
     /* 3 SELECTABLE BLUR & FLOATING GLASS MODES (SATIN, LIQUID GLASS, BOKEH)        */
+    /* Applied to both Calculator Cards AND Popovers (Settings, History, Calendar)! */
     /* ============================================================================ */
     /* Mode 1: Frosted Satin (Default) */
     html[data-blur-style="satin"] .bg-depth-motif {
-      filter: blur(22px) saturate(145%);
-      -webkit-filter: blur(22px) saturate(145%);
+      filter: blur(26px) saturate(140%);
+      -webkit-filter: blur(26px) saturate(140%);
     }
     html.dark[data-blur-style="satin"] .bg-depth-motif {
-      filter: blur(26px) saturate(155%);
-      -webkit-filter: blur(26px) saturate(155%);
+      filter: blur(30px) saturate(150%);
+      -webkit-filter: blur(30px) saturate(150%);
     }
-    html[data-blur-style="satin"] .floating-main-card {
-      background-color: rgba(251, 248, 245, 0.80);
-      backdrop-filter: blur(20px) saturate(150%);
-      -webkit-backdrop-filter: blur(20px) saturate(150%);
-      box-shadow: 0 32px 64px -14px rgba(14, 42, 28, 0.22), 0 12px 28px -8px rgba(0, 0, 0, 0.09), inset 0 1px 1px rgba(255, 255, 255, 0.85);
+    html[data-blur-style="satin"] .floating-main-card,
+    html[data-blur-style="satin"] .floating-popover-card {
+      background-color: rgba(251, 248, 245, 0.82);
+      backdrop-filter: blur(22px) saturate(150%);
+      -webkit-backdrop-filter: blur(22px) saturate(150%);
+      box-shadow: 0 32px 64px -14px rgba(14, 42, 28, 0.20), 0 12px 28px -8px rgba(0, 0, 0, 0.08), inset 0 1px 1px rgba(255, 255, 255, 0.85);
     }
-    html.dark[data-blur-style="satin"] .floating-main-card {
-      background-color: rgba(13, 38, 27, 0.76);
-      backdrop-filter: blur(22px) saturate(160%);
-      -webkit-backdrop-filter: blur(22px) saturate(160%);
-      box-shadow: 0 34px 68px -12px rgba(0, 0, 0, 0.72), 0 0 34px -6px rgba(0, 166, 81, 0.18), inset 0 1px 1px rgba(255, 255, 255, 0.14);
+    html.dark[data-blur-style="satin"] .floating-main-card,
+    html.dark[data-blur-style="satin"] .floating-popover-card {
+      background-color: rgba(13, 38, 27, 0.80);
+      backdrop-filter: blur(24px) saturate(160%);
+      -webkit-backdrop-filter: blur(24px) saturate(160%);
+      box-shadow: 0 34px 68px -12px rgba(0, 0, 0, 0.72), 0 0 34px -6px rgba(0, 166, 81, 0.16), inset 0 1px 1px rgba(255, 255, 255, 0.14);
     }
 
     /* Mode 2: Liquid Glass (High-Refraction Translucent Crystal Glass + Specular Edge) */
     html[data-blur-style="liquid"] .bg-depth-motif {
-      filter: blur(12px) saturate(175%);
-      -webkit-filter: blur(12px) saturate(175%);
+      filter: blur(18px) saturate(165%);
+      -webkit-filter: blur(18px) saturate(165%);
     }
     html.dark[data-blur-style="liquid"] .bg-depth-motif {
-      filter: blur(15px) saturate(185%);
-      -webkit-filter: blur(15px) saturate(185%);
+      filter: blur(22px) saturate(175%);
+      -webkit-filter: blur(22px) saturate(175%);
     }
-    html[data-blur-style="liquid"] .floating-main-card {
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.66) 0%, rgba(251, 248, 245, 0.50) 100%);
-      backdrop-filter: blur(30px) saturate(195%) contrast(104%);
-      -webkit-backdrop-filter: blur(30px) saturate(195%) contrast(104%);
-      border-color: rgba(255, 255, 255, 0.72) !important;
-      box-shadow: 0 36px 72px -14px rgba(0, 68, 34, 0.26), 0 14px 32px -8px rgba(0, 0, 0, 0.12), inset 0 1.5px 2px rgba(255, 255, 255, 0.95), inset 0 -1px 2px rgba(0, 166, 81, 0.12);
+    html[data-blur-style="liquid"] .floating-main-card,
+    html[data-blur-style="liquid"] .floating-popover-card {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.68) 0%, rgba(251, 248, 245, 0.52) 100%) !important;
+      backdrop-filter: blur(32px) saturate(195%) contrast(104%) !important;
+      -webkit-backdrop-filter: blur(32px) saturate(195%) contrast(104%) !important;
+      border-color: rgba(255, 255, 255, 0.78) !important;
+      box-shadow: 0 36px 72px -14px rgba(0, 68, 34, 0.24), 0 14px 32px -8px rgba(0, 0, 0, 0.11), inset 0 1.5px 2px rgba(255, 255, 255, 0.95), inset 0 -1px 2px rgba(0, 166, 81, 0.12) !important;
     }
-    html.dark[data-blur-style="liquid"] .floating-main-card {
-      background: linear-gradient(135deg, rgba(22, 62, 44, 0.62) 0%, rgba(10, 30, 21, 0.48) 100%);
-      backdrop-filter: blur(32px) saturate(200%) contrast(106%);
-      -webkit-backdrop-filter: blur(32px) saturate(200%) contrast(106%);
-      border-color: rgba(36, 209, 110, 0.28) !important;
-      box-shadow: 0 38px 76px -12px rgba(0, 0, 0, 0.78), 0 0 40px -6px rgba(36, 209, 110, 0.24), inset 0 1.5px 2px rgba(255, 255, 255, 0.22), inset 0 -1px 2px rgba(36, 209, 110, 0.16);
+    html.dark[data-blur-style="liquid"] .floating-main-card,
+    html.dark[data-blur-style="liquid"] .floating-popover-card {
+      background: linear-gradient(135deg, rgba(22, 62, 44, 0.66) 0%, rgba(10, 30, 21, 0.52) 100%) !important;
+      backdrop-filter: blur(34px) saturate(200%) contrast(106%) !important;
+      -webkit-backdrop-filter: blur(34px) saturate(200%) contrast(106%) !important;
+      border-color: rgba(36, 209, 110, 0.32) !important;
+      box-shadow: 0 38px 76px -12px rgba(0, 0, 0, 0.78), 0 0 40px -6px rgba(36, 209, 110, 0.22), inset 0 1.5px 2px rgba(255, 255, 255, 0.22), inset 0 -1px 2px rgba(36, 209, 110, 0.16) !important;
     }
-    html[data-blur-style="liquid"] .adaptive-inner-card {
-      background-color: rgba(243, 236, 228, 0.65) !important;
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
+    html[data-blur-style="liquid"] .adaptive-inner-card,
+    html[data-blur-style="liquid"] .settings-inner-card {
+      background-color: rgba(243, 236, 228, 0.62) !important;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-color: rgba(255, 255, 255, 0.65) !important;
     }
-    html.dark[data-blur-style="liquid"] .adaptive-inner-card {
-      background-color: rgba(7, 23, 16, 0.55) !important;
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
+    html.dark[data-blur-style="liquid"] .adaptive-inner-card,
+    html.dark[data-blur-style="liquid"] .settings-inner-card {
+      background-color: rgba(7, 23, 16, 0.56) !important;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-color: rgba(255, 255, 255, 0.14) !important;
     }
 
-    /* Mode 3: Atmospheric Bokeh (Ultra-Soft 44px Ambient Diffusion + Crisp Matte Elevation) */
+    /* Mode 3: Deep Bokeh (Ultra-Soft 46px Ambient Diffusion + Crisp Matte Elevation) */
     html[data-blur-style="bokeh"] .bg-depth-motif {
-      filter: blur(44px) saturate(165%);
-      -webkit-filter: blur(44px) saturate(165%);
+      filter: blur(46px) saturate(160%);
+      -webkit-filter: blur(46px) saturate(160%);
     }
     html.dark[data-blur-style="bokeh"] .bg-depth-motif {
-      filter: blur(50px) saturate(175%);
-      -webkit-filter: blur(50px) saturate(175%);
+      filter: blur(52px) saturate(170%);
+      -webkit-filter: blur(52px) saturate(170%);
     }
-    html[data-blur-style="bokeh"] .floating-main-card {
-      background-color: rgba(251, 248, 245, 0.93);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+    html[data-blur-style="bokeh"] .floating-main-card,
+    html[data-blur-style="bokeh"] .floating-popover-card {
+      background-color: rgba(251, 248, 245, 0.94);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
       box-shadow: 0 30px 60px -15px rgba(18, 42, 30, 0.20), 0 10px 24px -6px rgba(0, 0, 0, 0.08);
     }
-    html.dark[data-blur-style="bokeh"] .floating-main-card {
-      background-color: rgba(13, 38, 27, 0.92);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+    html.dark[data-blur-style="bokeh"] .floating-main-card,
+    html.dark[data-blur-style="bokeh"] .floating-popover-card {
+      background-color: rgba(13, 38, 27, 0.93);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
       box-shadow: 0 32px 64px -12px rgba(0, 0, 0, 0.72), 0 0 28px -8px rgba(0, 166, 81, 0.15);
+    }
+
+    /* ============================================================================ */
+    /* PRECISION AUTO-UPDATE TOGGLE SWITCH GEOMETRY (NEVER LEAKS OR CENTERS!)       */
+    /* ============================================================================ */
+    #autoUpdateToggleBtn {
+      width: 46px !important;
+      height: 26px !important;
+      padding: 3px !important;
+      border-radius: 9999px !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: flex-start !important;
+      box-sizing: border-box !important;
+      background-color: #CBD5E1;
+      transition: background-color 0.22s ease;
+    }
+    html.dark #autoUpdateToggleBtn {
+      background-color: rgba(255, 255, 255, 0.22);
+    }
+    #autoUpdateToggleBtn[aria-checked="true"] {
+      background-color: #00A651 !important;
+    }
+    #autoUpdateToggleKnob {
+      width: 20px !important;
+      height: 20px !important;
+      border-radius: 9999px !important;
+      background-color: #FFFFFF !important;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.26) !important;
+      transition: transform 0.26s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+      transform: translateX(0px) !important;
+      flex-shrink: 0 !important;
+    }
+    #autoUpdateToggleBtn[aria-checked="true"] #autoUpdateToggleKnob {
+      transform: translateX(20px) !important;
+    }
+
+    /* ============================================================================ */
+    /* FLYING DATE CLONE FOR "USE AS START DATE" TRANSFER ANIMATION                 */
+    /* ============================================================================ */
+    .flying-date-badge {
+      position: fixed;
+      z-index: 9990;
+      pointer-events: none;
+      font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      white-space: nowrap;
+      padding: 4px 12px;
+      border-radius: 12px;
+      background: rgba(0, 166, 81, 0.95);
+      color: #FFFFFF;
+      box-shadow: 0 16px 36px rgba(0, 166, 81, 0.45), 0 0 0 2px rgba(255, 255, 255, 0.4);
+      transform-origin: center center;
+      will-change: transform, opacity;
+    }
+    @keyframes startInputArrivalPulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(0, 166, 81, 0.65);
+        border-color: #00A651;
+      }
+      60% {
+        box-shadow: 0 0 0 7px rgba(0, 166, 81, 0);
+        border-color: #00A651;
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(0, 166, 81, 0);
+      }
+    }
+    .animate-input-arrival {
+      animation: startInputArrivalPulse 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
 
     /* Bouncy Spring Transitions */
@@ -974,7 +1046,6 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
       animation: calendarPopIn 0.32s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
     }
 
-    /* Custom Sub-Popover Dropdown Spring Animation (Month / Year / History / Settings) */
     @keyframes dropdownSpringIn {
       0% {
         opacity: 0;
@@ -989,7 +1060,6 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
       animation: dropdownSpringIn 0.26s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
     }
 
-    /* Refined, Subtle Result Highlight Animation */
     @keyframes refinedResultPop {
       0% {
         transform: scale(0.992) translateY(2px);
@@ -1021,7 +1091,6 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
       animation: refinedResultPop 0.32s cubic-bezier(0.22, 1, 0.36, 1) forwards, refinedGlow 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
 
-    /* Value Disappear Animation on Clear */
     @keyframes valueDisappearWave {
       0% {
         opacity: 1;
@@ -1045,7 +1114,7 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
     }
 
     /* ============================================================================ */
-    /* SUBTLE SIGNATURE, VERSION BADGE & CORNER WINDOW RESPONSIVE LAYOUT            */
+    /* SUBTLE SIGNATURE, VERSION BADGE & CORNER WINDOW SINGLE-LINE RESULT LAYOUT    */
     /* ============================================================================ */
     #appFooter {
       position: fixed;
@@ -1091,49 +1160,76 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
       }
     }
 
-    /* Corner Window & Compact Desktop Mode: keep "FA Calculator" visible and tighten vertical rhythm */
+    /* Single-Line Result Bar Enforcement:
+       Ensures "Use as Start Date" and "Copy Date" NEVER wrap to a second line when a date is calculated! */
+    .single-line-result-row {
+      display: flex !important;
+      flex-wrap: nowrap !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+    }
+
+    /* Corner Window & Compact Desktop Mode: keep "FA Calculator" visible, tighten vertical rhythm,
+       and scale the Calculated Result Date + buttons so they ALWAYS stay on a single line! */
     @media (max-height: 780px), (max-width: 900px) {
       .adaptive-header {
-        padding-top: 0.45rem !important;
-        padding-bottom: 0.45rem !important;
-        gap: 0.3rem !important;
+        padding-top: 0.4rem !important;
+        padding-bottom: 0.4rem !important;
+        gap: 0.25rem !important;
       }
       .adaptive-title {
-        font-size: 1.25rem !important;
-        margin-bottom: 0.35rem !important;
+        font-size: 1.2rem !important;
+        margin-bottom: 0.3rem !important;
       }
       .adaptive-card {
-        padding: 0.85rem 1.05rem !important;
+        padding: 0.75rem 0.95rem !important;
         border-radius: 1.25rem !important;
       }
       .adaptive-card-header {
-        margin-bottom: 0.55rem !important;
+        margin-bottom: 0.45rem !important;
       }
       .adaptive-subtitle {
         display: none !important;
       }
       .adaptive-inner-card {
-        padding: 0.7rem 0.9rem !important;
+        padding: 0.65rem 0.85rem !important;
         border-radius: 1rem !important;
       }
       .adaptive-result-card {
-        padding: 0.75rem 1rem !important;
+        padding: 0.65rem 0.85rem !important;
         border-radius: 1.25rem !important;
       }
       .adaptive-result-inner {
-        padding: 0.7rem 0.9rem !important;
+        padding: 0.6rem 0.8rem !important;
+        gap: 0.5rem !important;
       }
       .adaptive-btn-calc {
-        padding-top: 0.55rem !important;
-        padding-bottom: 0.55rem !important;
-        margin-top: 0.55rem !important;
+        padding-top: 0.5rem !important;
+        padding-bottom: 0.5rem !important;
+        margin-top: 0.45rem !important;
       }
       .adaptive-math-key {
         padding-top: 0.45rem !important;
         padding-bottom: 0.45rem !important;
       }
       .adaptive-section-gap {
-        gap: 0.55rem !important;
+        gap: 0.45rem !important;
+      }
+      /* Keep calculated date + buttons on 1 single line in compact/resized windows! */
+      #targetCalculatedDate {
+        font-size: clamp(1.15rem, 3.1vw, 1.5rem) !important;
+        letter-spacing: 0.02em !important;
+      }
+      #metricYMD {
+        font-size: clamp(1.05rem, 2.8vw, 1.45rem) !important;
+      }
+      #useAsStartDateBtn,
+      #copyTargetDateBtn,
+      #copyYMDBtn {
+        padding: 0.48rem 0.7rem !important;
+        font-size: 0.74rem !important;
+        border-radius: 0.75rem !important;
+        white-space: nowrap !important;
       }
     }
 
@@ -1142,7 +1238,7 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
       #mainWorkspace {
         align-items: flex-start !important;
         overflow-y: auto !important;
-        padding: 0.5rem 0.6rem !important;
+        padding: 0.4rem 0.55rem !important;
       }
     }
   </style>
@@ -1176,7 +1272,9 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
   </div>
 
   <!-- ========================================================================= -->
-  <!-- AMBIENT DEPTH-OF-FIELD GEOMETRIC BOKEH LAYER (CARD-PERIMETER FLOATING)    -->
+  <!-- AMBIENT DEPTH-OF-FIELD LAYER:                                             -->
+  <!-- 1. Bottom-Left Original Geometric Motif (Kept Intact)                     -->
+  <!-- 2. Soft, Professional Circular Orbs & Bubbles Behind the Card Perimeter   -->
   <!-- ========================================================================= -->
   <div class="fixed inset-0 pointer-events-none select-none z-0 overflow-hidden">
     <!-- 1. Bottom-Left Original Geometric Cluster (Kept Intact!) -->
@@ -1196,43 +1294,40 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
       </svg>
     </div>
 
-    <!-- 2. Card-Perimeter Floating Geometric Shapes:
-         Positioned specifically so they cross the top-left edge, top-right corner, right flank,
-         and bottom-right edge of the central calculator card — creating true optical depth & refraction! -->
-    <svg class="bg-depth-motif w-full h-full opacity-85 dark:opacity-50 transition-all duration-300" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- 2. Professional Soft Circular Orbs & Ambient Bubbles (Zero sharp triangles behind the card!) -->
+    <svg class="bg-depth-motif w-full h-full opacity-80 dark:opacity-45 transition-all duration-300" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" fill="none" xmlns="http://www.w3.org/2000/svg">
       <defs>
-        <linearGradient id="edgeEmerald" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#00C462" stop-opacity="0.72"/>
-          <stop offset="100%" stop-color="#008C44" stop-opacity="0.38"/>
-        </linearGradient>
-        <linearGradient id="edgeGold" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#E5C543" stop-opacity="0.78"/>
-          <stop offset="100%" stop-color="#8CD630" stop-opacity="0.42"/>
-        </linearGradient>
-        <linearGradient id="edgeLavender" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#A695C7" stop-opacity="0.68"/>
-          <stop offset="100%" stop-color="#00B359" stop-opacity="0.36"/>
-        </linearGradient>
+        <radialGradient id="orbEmerald" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#00B85C" stop-opacity="0.52"/>
+          <stop offset="65%" stop-color="#009B4D" stop-opacity="0.22"/>
+          <stop offset="100%" stop-color="#009B4D" stop-opacity="0"/>
+        </radialGradient>
+        <radialGradient id="orbWarmGold" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#E5C543" stop-opacity="0.50"/>
+          <stop offset="65%" stop-color="#D4B230" stop-opacity="0.20"/>
+          <stop offset="100%" stop-color="#D4B230" stop-opacity="0"/>
+        </radialGradient>
+        <radialGradient id="orbSoftLavender" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#A695C7" stop-opacity="0.46"/>
+          <stop offset="65%" stop-color="#00A651" stop-opacity="0.16"/>
+          <stop offset="100%" stop-color="#00A651" stop-opacity="0"/>
+        </radialGradient>
       </defs>
 
-      <!-- Top-Left Card Edge Straddle (Peeks out above & left of the card's top-left corner while refracting inside) -->
-      <path d="M160 110H380C398 110 408 132 394 146L215 320C200 335 160 324 160 300V110Z" fill="url(#edgeGold)"/>
-      <circle cx="330" cy="195" r="82" fill="url(#edgeEmerald)"/>
-      <path d="M235 95L395 235H235V95Z" stroke="#00A651" stroke-opacity="0.6" stroke-width="5"/>
+      <!-- Upper-Left Soft Warm-Gold & Mint Bubbles (Gentle halo behind the top-left of the card) -->
+      <circle cx="380" cy="240" r="145" fill="url(#orbWarmGold)"/>
+      <circle cx="465" cy="210" r="95" fill="url(#orbEmerald)"/>
+      <circle cx="330" cy="295" r="54" stroke="#00A651" stroke-opacity="0.28" stroke-width="3"/>
 
-      <!-- Top-Right Card Corner Straddle (Crosses the upper-right boundary of the card) -->
-      <path d="M1010 95H1265C1285 95 1298 116 1288 136L1195 325C1184 348 1152 352 1136 332L995 140C982 122 992 95 1010 95Z" fill="url(#edgeEmerald)"/>
-      <circle cx="1075" cy="185" r="74" fill="url(#edgeGold)"/>
-      <rect x="1120" y="135" width="140" height="140" rx="32" transform="rotate(24 1190 205)" stroke="#8CD630" stroke-opacity="0.65" stroke-width="5"/>
+      <!-- Upper-Right Soft Emerald & Lime Bubble Cluster (Gentle halo behind the top-right of the card) -->
+      <circle cx="1040" cy="235" r="155" fill="url(#orbEmerald)"/>
+      <circle cx="955" cy="195" r="90" fill="url(#orbWarmGold)"/>
+      <circle cx="1105" cy="285" r="62" stroke="#8CD630" stroke-opacity="0.32" stroke-width="3"/>
 
-      <!-- Mid-Right / Lower-Right Card Edge Straddle (Peeks out from behind the right side & result card) -->
-      <path d="M980 445H1245C1265 445 1278 468 1264 486L1075 685C1058 702 1030 694 1024 670L960 475C954 458 965 445 980 445Z" fill="url(#edgeLavender)"/>
-      <circle cx="1145" cy="535" r="88" fill="url(#edgeEmerald)"/>
-      <path d="M1045 565L1225 710H1045V565Z" fill="#E5C543" fill-opacity="0.58"/>
-
-      <!-- Subtle Under-Card Center-Left Cushion Glow (Creates contrast between the upper card and dark result card) -->
-      <ellipse cx="520" cy="560" rx="145" ry="65" fill="url(#edgeGold)"/>
-      <ellipse cx="860" cy="390" rx="130" ry="70" fill="url(#edgeEmerald)"/>
+      <!-- Center-Bottom & Lower-Right Soft Floating Cushion Orbs -->
+      <circle cx="1015" cy="590" r="160" fill="url(#orbSoftLavender)"/>
+      <circle cx="910" cy="635" r="110" fill="url(#orbEmerald)"/>
+      <circle cx="575" cy="540" r="135" fill="url(#orbWarmGold)"/>
     </svg>
   </div>
 
@@ -1368,7 +1463,6 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
               <h2 class="text-base sm:text-xl lg:text-2xl font-extrabold text-neutral-900 dark:text-white tracking-tight truncate">Add / Subtract Duration</h2>
               <p class="adaptive-subtitle text-xs sm:text-sm text-neutral-500 dark:text-neutral-400 mt-0.5">Calculate target date from a starting date (<span id="durationFormatBadge" class="font-mono font-bold text-fadv-green dark:text-fadv-lime">MM/DD/YYYY</span>)</p>
             </div>
-            <!-- Subtle History Button (matches Reset button styling in Light Mode, no notification badge) -->
             <div class="flex items-center space-x-1.5 sm:space-x-2 shrink-0">
               <button type="button" id="historyBtnDuration" class="spring-btn px-2.5 py-1.5 sm:px-3.5 sm:py-2 text-xs sm:text-sm font-bold text-neutral-500 dark:text-neutral-300 hover:text-neutral-800 dark:hover:text-white bg-neutral-100 dark:bg-fadv-cardDark rounded-xl flex items-center gap-1.5 cursor-pointer">
                 <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-neutral-400 dark:text-fadv-lime" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
@@ -1408,7 +1502,6 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
                     autocomplete="off"
                     class="date-input-with-mirror w-full pl-3.5 pr-11 py-2 sm:py-3 bg-white dark:bg-fadv-forest border border-neutral-300 dark:border-white/15 rounded-xl font-mono text-lg sm:text-2xl lg:text-3xl font-extrabold text-neutral-900 dark:text-white placeholder-neutral-300 dark:placeholder-neutral-600 focus:outline-none focus:border-fadv-green dark:focus:border-fadv-lime select-text tracking-wider"
                   >
-                  <!-- Per-Segment Invalid Highlight Mirror (Turns only invalid MM, DD, or YYYY red) -->
                   <div id="startDateMirror" class="date-input-mirror pl-3.5 pr-11 py-2 sm:py-3 font-mono text-lg sm:text-2xl lg:text-3xl font-extrabold text-neutral-900 dark:text-white tracking-wider" aria-hidden="true"></div>
                   <button 
                     type="button" 
@@ -1503,25 +1596,27 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
 
         </div>
 
-        <!-- Result Box: flex-wrap + responsive sizing ensures Copy Date NEVER leaks outside the card at any width -->
+        <!-- Result Box: Strictly single-line layout so "Use as Start Date" and "Copy Date" NEVER wrap to a second line! -->
         <div id="durationResultBox" class="adaptive-result-card tilt-card bg-fadv-dark/95 dark:bg-fadv-forest/95 backdrop-blur-md text-white rounded-3xl p-3.5 sm:p-5 lg:p-6 border-2 border-white/10 shadow-xl overflow-hidden">
-          <div class="adaptive-result-inner flex flex-wrap items-center justify-between gap-3 sm:gap-4 bg-white/5 rounded-2xl p-3.5 sm:p-5 border border-white/10">
-            <div class="min-w-0">
-              <span class="text-xs sm:text-sm font-bold uppercase tracking-wider text-fadv-lime block mb-0.5 sm:mb-1">Calculated Result Date</span>
-              <div class="flex flex-wrap items-baseline gap-x-2.5 gap-y-0.5">
-                <span id="targetCalculatedDate" class="text-2xl sm:text-3xl lg:text-5xl font-extrabold font-mono text-white tracking-wider select-text">--/--/----</span>
-                <span id="targetDayOfWeek" class="text-sm sm:text-base lg:text-xl font-semibold text-neutral-400"></span>
+          <div class="adaptive-result-inner single-line-result-row gap-2 sm:gap-4 bg-white/5 rounded-2xl p-3.5 sm:p-5 border border-white/10">
+            <div class="min-w-0 flex-1">
+              <div class="flex items-center gap-2 mb-0.5 sm:mb-1">
+                <span class="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-fadv-lime truncate">Calculated Result Date</span>
+                <span id="targetDayOfWeek" class="text-[11px] sm:text-xs font-extrabold uppercase tracking-wider text-white/80 bg-white/10 px-2 py-0.5 rounded-md hidden"></span>
+              </div>
+              <div class="flex items-baseline">
+                <span id="targetCalculatedDate" class="text-2xl sm:text-3xl lg:text-5xl font-extrabold font-mono text-white tracking-wider select-text truncate">--/--/----</span>
               </div>
             </div>
 
-            <div class="flex flex-wrap items-center gap-2 sm:gap-2.5 shrink-0">
+            <div class="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
               <button 
                 type="button" 
                 id="useAsStartDateBtn" 
-                class="spring-btn px-3.5 py-2.5 sm:px-4 lg:px-5 sm:py-3 rounded-2xl bg-white/10 hover:bg-fadv-lime hover:text-fadv-dark text-fadv-lime font-extrabold text-xs sm:text-sm lg:text-base flex items-center justify-center space-x-1.5 border border-fadv-lime/35 shadow-md cursor-pointer"
+                class="spring-btn px-3 py-2.5 sm:px-4 lg:px-5 sm:py-3 rounded-2xl bg-white/10 hover:bg-fadv-lime hover:text-fadv-dark text-fadv-lime font-extrabold text-xs sm:text-sm lg:text-base flex items-center justify-center space-x-1.5 border border-fadv-lime/35 shadow-md cursor-pointer"
                 title="Move result to Start Date and reset Duration fields for next step"
               >
-                <svg class="w-4 h-4 sm:w-5 sm:h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
                 </svg>
                 <span>Use as Start Date</span>
@@ -1530,9 +1625,9 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
               <button 
                 type="button" 
                 id="copyTargetDateBtn" 
-                class="spring-btn px-4 py-2.5 sm:px-5 lg:px-6 sm:py-3 rounded-2xl bg-fadv-green hover:bg-fadv-lime hover:text-fadv-dark text-white font-extrabold text-xs sm:text-sm lg:text-base flex items-center justify-center space-x-1.5 shadow-lg cursor-pointer"
+                class="spring-btn px-3.5 py-2.5 sm:px-5 lg:px-6 sm:py-3 rounded-2xl bg-fadv-green hover:bg-fadv-lime hover:text-fadv-dark text-white font-extrabold text-xs sm:text-sm lg:text-base flex items-center justify-center space-x-1.5 shadow-lg cursor-pointer"
               >
-                <svg class="w-4 h-4 sm:w-5 sm:h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
                 <span>Copy Date</span>
               </button>
@@ -1554,7 +1649,6 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
               <h2 class="text-base sm:text-xl lg:text-2xl font-extrabold text-neutral-900 dark:text-white tracking-tight truncate">Date Difference</h2>
               <p class="adaptive-subtitle text-xs sm:text-sm text-neutral-500 dark:text-neutral-400 mt-0.5">Enter or paste dates in <span id="gapFormatBadge" class="font-mono font-bold text-fadv-green dark:text-fadv-lime">MM/DD/YYYY</span> format</p>
             </div>
-            <!-- History, Swap, and Clear buttons all share the exact same font color & styling -->
             <div class="flex items-center space-x-1.5 sm:space-x-2 shrink-0">
               <button type="button" id="historyBtnGap" class="spring-btn px-2.5 py-1.5 sm:px-3.5 sm:py-2 text-xs sm:text-sm font-bold text-neutral-500 dark:text-neutral-300 hover:text-neutral-800 dark:hover:text-white bg-neutral-100 dark:bg-fadv-cardDark rounded-xl flex items-center gap-1.5 cursor-pointer">
                 <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-neutral-400 dark:text-fadv-lime" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
@@ -1676,10 +1770,10 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
         </div>
 
         <div id="gapResultBox" class="adaptive-result-card tilt-card bg-fadv-dark/95 dark:bg-fadv-forest/95 backdrop-blur-md text-white rounded-3xl p-3.5 sm:p-5 lg:p-6 border-2 border-white/10 shadow-xl overflow-hidden">
-          <div class="adaptive-result-inner flex flex-wrap items-center justify-between gap-3 sm:gap-4 bg-white/5 rounded-2xl p-3.5 sm:p-5 border border-white/10">
-            <div class="min-w-0">
-              <span class="text-xs sm:text-sm font-bold uppercase tracking-wider text-fadv-lime block mb-0.5 sm:mb-1">Exact Date Difference</span>
-              <div id="metricYMD" class="text-xl sm:text-3xl lg:text-5xl font-extrabold font-mono text-white tracking-tight select-text">
+          <div class="adaptive-result-inner single-line-result-row gap-2 sm:gap-4 bg-white/5 rounded-2xl p-3.5 sm:p-5 border border-white/10">
+            <div class="min-w-0 flex-1">
+              <span class="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-fadv-lime block mb-0.5 sm:mb-1">Exact Date Difference</span>
+              <div id="metricYMD" class="text-xl sm:text-3xl lg:text-5xl font-extrabold font-mono text-white tracking-tight select-text truncate">
                 0 Years, 0 Months, 0 Days
               </div>
             </div>
@@ -1709,7 +1803,6 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
               <h2 class="text-base sm:text-xl lg:text-2xl font-extrabold text-neutral-900 dark:text-white tracking-tight truncate">Standard Calculator</h2>
               <p class="adaptive-subtitle text-xs sm:text-sm text-neutral-500 dark:text-neutral-400 mt-0.5">Quick arithmetic for addition, subtraction, multiplication, and division</p>
             </div>
-            <!-- Subtle History Button (matches Clear All styling in Light Mode, no notification badge) -->
             <div class="flex items-center space-x-1.5 sm:space-x-2 shrink-0">
               <button type="button" id="historyBtnMath" class="spring-btn px-2.5 py-1.5 sm:px-3.5 sm:py-2 text-xs sm:text-sm font-bold text-neutral-500 dark:text-neutral-300 hover:text-neutral-800 dark:hover:text-white bg-neutral-100 dark:bg-fadv-cardDark rounded-xl flex items-center gap-1.5 cursor-pointer">
                 <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-neutral-400 dark:text-fadv-lime" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
@@ -1776,13 +1869,13 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
   </main>
 
   <!-- ========================================================================= -->
-  <!-- SETTINGS POPOVER (DEFAULT TAB, DATE FORMAT, BLUR STYLE, UPDATES)          -->
+  <!-- CARD-BASED SETTINGS POPOVER (WITH LIQUID GLASS / BLUR STYLE SUPPORT)      -->
   <!-- ========================================================================= -->
   <div 
     id="settingsPopover" 
-    class="custom-scroll fixed hidden z-50 w-80 sm:w-96 max-h-[84vh] overflow-y-auto bg-fadv-ivory dark:bg-fadv-forest rounded-3xl shadow-2xl border-2 border-fadv-sandBorder dark:border-fadv-green/40 p-4 sm:p-5 select-none"
+    class="floating-popover-card custom-scroll fixed hidden z-50 w-80 sm:w-96 max-h-[85vh] overflow-y-auto rounded-3xl border-2 border-fadv-sandBorder dark:border-fadv-green/40 p-4 sm:p-5 select-none"
   >
-    <div class="flex items-center justify-between pb-3 mb-3.5 border-b border-fadv-sandBorder dark:border-white/10">
+    <div class="flex items-center justify-between pb-2.5 mb-3 border-b border-fadv-sandBorder dark:border-white/10">
       <div class="flex items-center space-x-2">
         <span class="w-2.5 h-2.5 rounded-full bg-fadv-green"></span>
         <h3 class="text-sm sm:text-base font-extrabold text-neutral-900 dark:text-white tracking-tight">
@@ -1794,109 +1887,109 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
       </button>
     </div>
 
-    <div class="flex flex-col gap-4">
-      <!-- 1. Default Startup Tab -->
-      <div>
-        <label class="block text-[11px] sm:text-xs font-extrabold uppercase tracking-wider text-neutral-500 dark:text-neutral-400 mb-1.5">
+    <div class="flex flex-col gap-3">
+      <!-- Card 1: Default Startup Tab -->
+      <div class="settings-inner-card p-3 rounded-2xl bg-[#F3ECE4]/85 dark:bg-fadv-dark/75 border border-fadv-sandBorder dark:border-white/10">
+        <label class="block text-[11px] font-extrabold uppercase tracking-wider text-neutral-500 dark:text-neutral-400 mb-2">
           Default Startup Tab
         </label>
-        <div class="grid grid-cols-3 gap-1.5 bg-[#F3ECE4] dark:bg-fadv-dark p-1 rounded-2xl border border-fadv-sandBorder dark:border-white/10">
-          <button type="button" data-default-tab="0" class="settings-tab-opt spring-btn py-1.5 px-2 rounded-xl text-xs font-extrabold bg-fadv-green text-white shadow-xs cursor-pointer">
+        <div class="grid grid-cols-3 gap-1.5 bg-white/70 dark:bg-fadv-forest/80 p-1 rounded-xl border border-fadv-sandBorder dark:border-white/10">
+          <button type="button" data-default-tab="0" class="settings-tab-opt spring-btn py-1.5 px-2 rounded-lg text-xs font-extrabold bg-fadv-green text-white shadow-xs cursor-pointer">
             ± Duration
           </button>
-          <button type="button" data-default-tab="1" class="settings-tab-opt spring-btn py-1.5 px-2 rounded-xl text-xs font-bold text-neutral-700 dark:text-neutral-200 hover:bg-white/50 dark:hover:bg-white/5 cursor-pointer">
+          <button type="button" data-default-tab="1" class="settings-tab-opt spring-btn py-1.5 px-2 rounded-lg text-xs font-bold text-neutral-700 dark:text-neutral-200 hover:bg-black/5 dark:hover:bg-white/5 cursor-pointer">
             Date Diff
           </button>
-          <button type="button" data-default-tab="2" class="settings-tab-opt spring-btn py-1.5 px-2 rounded-xl text-xs font-bold text-neutral-700 dark:text-neutral-200 hover:bg-white/50 dark:hover:bg-white/5 cursor-pointer">
+          <button type="button" data-default-tab="2" class="settings-tab-opt spring-btn py-1.5 px-2 rounded-lg text-xs font-bold text-neutral-700 dark:text-neutral-200 hover:bg-black/5 dark:hover:bg-white/5 cursor-pointer">
             Calculator
           </button>
         </div>
       </div>
 
-      <!-- 2. Date Format -->
-      <div>
-        <label class="block text-[11px] sm:text-xs font-extrabold uppercase tracking-wider text-neutral-500 dark:text-neutral-400 mb-1.5">
+      <!-- Card 2: Date Format -->
+      <div class="settings-inner-card p-3 rounded-2xl bg-[#F3ECE4]/85 dark:bg-fadv-dark/75 border border-fadv-sandBorder dark:border-white/10">
+        <label class="block text-[11px] font-extrabold uppercase tracking-wider text-neutral-500 dark:text-neutral-400 mb-2">
           Date Format
         </label>
         <div class="grid grid-cols-2 gap-1.5">
-          <button type="button" data-date-fmt="MM/DD/YYYY" class="settings-fmt-opt spring-btn py-2 px-2.5 rounded-xl font-mono text-xs font-extrabold bg-fadv-green text-white shadow-xs flex items-center justify-between cursor-pointer">
+          <button type="button" data-date-fmt="MM/DD/YYYY" class="settings-fmt-opt spring-btn py-1.5 px-2.5 rounded-xl font-mono text-xs font-extrabold bg-fadv-green text-white shadow-xs flex items-center justify-between cursor-pointer">
             <span>MM/DD/YYYY</span>
             <span class="text-[10px] opacity-85 font-sans">US</span>
           </button>
-          <button type="button" data-date-fmt="DD/MM/YYYY" class="settings-fmt-opt spring-btn py-2 px-2.5 rounded-xl font-mono text-xs font-bold bg-[#F3ECE4] dark:bg-fadv-dark text-neutral-700 dark:text-neutral-200 border border-fadv-sandBorder dark:border-white/10 flex items-center justify-between cursor-pointer">
+          <button type="button" data-date-fmt="DD/MM/YYYY" class="settings-fmt-opt spring-btn py-1.5 px-2.5 rounded-xl font-mono text-xs font-bold bg-white/80 dark:bg-fadv-forest text-neutral-700 dark:text-neutral-200 border border-fadv-sandBorder dark:border-white/10 flex items-center justify-between cursor-pointer">
             <span>DD/MM/YYYY</span>
             <span class="text-[10px] opacity-70 font-sans">IN/UK</span>
           </button>
-          <button type="button" data-date-fmt="YYYY-MM-DD" class="settings-fmt-opt spring-btn py-2 px-2.5 rounded-xl font-mono text-xs font-bold bg-[#F3ECE4] dark:bg-fadv-dark text-neutral-700 dark:text-neutral-200 border border-fadv-sandBorder dark:border-white/10 flex items-center justify-between cursor-pointer">
+          <button type="button" data-date-fmt="YYYY-MM-DD" class="settings-fmt-opt spring-btn py-1.5 px-2.5 rounded-xl font-mono text-xs font-bold bg-white/80 dark:bg-fadv-forest text-neutral-700 dark:text-neutral-200 border border-fadv-sandBorder dark:border-white/10 flex items-center justify-between cursor-pointer">
             <span>YYYY-MM-DD</span>
             <span class="text-[10px] opacity-70 font-sans">ISO</span>
           </button>
-          <button type="button" data-date-fmt="DD-MM-YYYY" class="settings-fmt-opt spring-btn py-2 px-2.5 rounded-xl font-mono text-xs font-bold bg-[#F3ECE4] dark:bg-fadv-dark text-neutral-700 dark:text-neutral-200 border border-fadv-sandBorder dark:border-white/10 flex items-center justify-between cursor-pointer">
+          <button type="button" data-date-fmt="DD-MM-YYYY" class="settings-fmt-opt spring-btn py-1.5 px-2.5 rounded-xl font-mono text-xs font-bold bg-white/80 dark:bg-fadv-forest text-neutral-700 dark:text-neutral-200 border border-fadv-sandBorder dark:border-white/10 flex items-center justify-between cursor-pointer">
             <span>DD-MM-YYYY</span>
             <span class="text-[10px] opacity-70 font-sans">DMY</span>
           </button>
-          <button type="button" data-date-fmt="MM-DD-YYYY" class="settings-fmt-opt col-span-2 spring-btn py-2 px-2.5 rounded-xl font-mono text-xs font-bold bg-[#F3ECE4] dark:bg-fadv-dark text-neutral-700 dark:text-neutral-200 border border-fadv-sandBorder dark:border-white/10 flex items-center justify-between cursor-pointer">
+          <button type="button" data-date-fmt="MM-DD-YYYY" class="settings-fmt-opt col-span-2 spring-btn py-1.5 px-2.5 rounded-xl font-mono text-xs font-bold bg-white/80 dark:bg-fadv-forest text-neutral-700 dark:text-neutral-200 border border-fadv-sandBorder dark:border-white/10 flex items-center justify-between cursor-pointer">
             <span>MM-DD-YYYY</span>
             <span class="text-[10px] opacity-70 font-sans">Dash MDY</span>
           </button>
         </div>
       </div>
 
-      <!-- 3. Visual Blur & Card Glass Style -->
-      <div>
-        <label class="block text-[11px] sm:text-xs font-extrabold uppercase tracking-wider text-neutral-500 dark:text-neutral-400 mb-1.5">
-          Background &amp; Card Blur Style
+      <!-- Card 3: Background & Blur Style -->
+      <div class="settings-inner-card p-3 rounded-2xl bg-[#F3ECE4]/85 dark:bg-fadv-dark/75 border border-fadv-sandBorder dark:border-white/10">
+        <label class="block text-[11px] font-extrabold uppercase tracking-wider text-neutral-500 dark:text-neutral-400 mb-2">
+          Background &amp; Blur Style
         </label>
-        <div class="grid grid-cols-3 gap-1.5 bg-[#F3ECE4] dark:bg-fadv-dark p-1 rounded-2xl border border-fadv-sandBorder dark:border-white/10">
-          <button type="button" data-blur-opt="satin" class="settings-blur-opt spring-btn py-1.5 px-2 rounded-xl text-xs font-extrabold bg-fadv-green text-white shadow-xs cursor-pointer">
+        <div class="grid grid-cols-3 gap-1.5 bg-white/70 dark:bg-fadv-forest/80 p-1 rounded-xl border border-fadv-sandBorder dark:border-white/10">
+          <button type="button" data-blur-opt="satin" class="settings-blur-opt spring-btn py-1.5 px-2 rounded-lg text-xs font-extrabold bg-fadv-green text-white shadow-xs cursor-pointer">
             Frosted Satin
           </button>
-          <button type="button" data-blur-opt="liquid" class="settings-blur-opt spring-btn py-1.5 px-2 rounded-xl text-xs font-bold text-neutral-700 dark:text-neutral-200 hover:bg-white/50 dark:hover:bg-white/5 cursor-pointer">
+          <button type="button" data-blur-opt="liquid" class="settings-blur-opt spring-btn py-1.5 px-2 rounded-lg text-xs font-bold text-neutral-700 dark:text-neutral-200 hover:bg-black/5 dark:hover:bg-white/5 cursor-pointer">
             Liquid Glass
           </button>
-          <button type="button" data-blur-opt="bokeh" class="settings-blur-opt spring-btn py-1.5 px-2 rounded-xl text-xs font-bold text-neutral-700 dark:text-neutral-200 hover:bg-white/50 dark:hover:bg-white/5 cursor-pointer">
+          <button type="button" data-blur-opt="bokeh" class="settings-blur-opt spring-btn py-1.5 px-2 rounded-lg text-xs font-bold text-neutral-700 dark:text-neutral-200 hover:bg-black/5 dark:hover:bg-white/5 cursor-pointer">
             Deep Bokeh
           </button>
         </div>
       </div>
 
-      <!-- 4. App Updates & Auto-Update Toggle -->
-      <div class="pt-3 border-t border-fadv-sandBorder dark:border-white/10 flex flex-col gap-2.5">
-        <div class="flex items-center justify-between">
+      <!-- Card 4: App Updates & Auto-Install Toggle -->
+      <div class="settings-inner-card p-3 rounded-2xl bg-[#F3ECE4]/85 dark:bg-fadv-dark/75 border border-fadv-sandBorder dark:border-white/10 flex flex-col gap-3">
+        <div class="flex items-center justify-between gap-2">
           <div>
             <span class="block text-xs font-extrabold text-neutral-900 dark:text-white">Auto-Install Updates</span>
-            <span class="block text-[11px] text-neutral-500 dark:text-neutral-400">Install &amp; show update screen automatically</span>
+            <span class="block text-[11px] text-neutral-500 dark:text-neutral-400 mt-0.5">Install the update automatically</span>
           </div>
           <button 
             type="button" 
             id="autoUpdateToggleBtn" 
             role="switch" 
             aria-checked="false"
-            class="spring-btn relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent bg-neutral-300 dark:bg-white/20 transition-colors duration-200 focus:outline-none"
+            class="cursor-pointer focus:outline-none"
           >
-            <span id="autoUpdateToggleKnob" class="pointer-events-none inline-block h-5 w-5 rounded-full bg-white shadow-md transform transition-transform duration-200 translate-x-0"></span>
+            <span id="autoUpdateToggleKnob"></span>
           </button>
         </div>
 
-        <div class="p-3 rounded-2xl bg-[#F3ECE4] dark:bg-fadv-dark/90 border border-fadv-sandBorder dark:border-white/10 flex items-center justify-between gap-2">
+        <div class="pt-2.5 border-t border-fadv-sandBorder dark:border-white/10 flex items-center justify-between gap-2">
           <div class="min-w-0">
-            <span class="block text-[11px] font-bold uppercase tracking-wider text-neutral-500 dark:text-neutral-400">Current Version</span>
+            <span class="block text-[10px] font-bold uppercase tracking-wider text-neutral-500 dark:text-neutral-400">Current Version</span>
             <span id="settingsVersionStatus" class="block text-xs sm:text-sm font-mono font-extrabold text-neutral-900 dark:text-white truncate mt-0.5">
-              v1.9.0
+              v1.9.1
             </span>
           </div>
           <div class="flex items-center gap-1.5 shrink-0">
             <button 
               type="button" 
               id="checkForUpdatesBtn" 
-              class="spring-btn px-3 py-2 rounded-xl bg-fadv-green hover:bg-fadv-greenHover text-white text-xs font-extrabold shadow-sm cursor-pointer"
+              class="spring-btn px-3 py-1.5 rounded-xl bg-fadv-green hover:bg-fadv-greenHover text-white text-xs font-extrabold shadow-sm cursor-pointer"
             >
               Check for Updates
             </button>
             <button 
               type="button" 
               id="settingsInstallUpdateNowBtn" 
-              class="hidden spring-btn px-3 py-2 rounded-xl bg-fadv-lime text-fadv-dark text-xs font-extrabold shadow-sm cursor-pointer"
+              class="hidden spring-btn px-3 py-1.5 rounded-xl bg-fadv-lime text-fadv-dark text-xs font-extrabold shadow-sm cursor-pointer"
             >
               Install Now
             </button>
@@ -1912,7 +2005,7 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
   <!-- ========================================================================= -->
   <div 
     id="historyPopover" 
-    class="fixed hidden z-50 w-80 sm:w-96 bg-fadv-ivory dark:bg-fadv-forest rounded-3xl shadow-2xl border-2 border-fadv-sandBorder dark:border-fadv-green/40 p-4 sm:p-5 select-none"
+    class="floating-popover-card fixed hidden z-50 w-80 sm:w-96 rounded-3xl border-2 border-fadv-sandBorder dark:border-fadv-green/40 p-4 sm:p-5 select-none"
   >
     <div class="flex items-center justify-between pb-3 mb-3 border-b border-fadv-sandBorder dark:border-white/10">
       <div class="flex items-center space-x-2">
@@ -1941,7 +2034,7 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
   <!-- ========================================================================= -->
   <div 
     id="customCalendarPopover" 
-    class="fixed hidden z-50 w-80 bg-fadv-ivory dark:bg-fadv-forest rounded-3xl shadow-2xl border-2 border-fadv-sandBorder dark:border-fadv-green/40 p-5 select-none"
+    class="floating-popover-card fixed hidden z-50 w-80 rounded-3xl border-2 border-fadv-sandBorder dark:border-fadv-green/40 p-5 select-none"
   >
     <div class="relative flex items-center justify-between mb-4">
       <button type="button" id="calPrevMonthBtn" class="spring-btn p-2 rounded-xl bg-[#F3ECE4] dark:bg-fadv-dark hover:bg-fadv-mint dark:hover:bg-white/10 text-neutral-700 dark:text-neutral-200 border border-fadv-sandBorder dark:border-white/10 cursor-pointer">
@@ -2008,7 +2101,7 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
       id="appVersionBadge" 
       class="px-2.5 py-1 rounded-lg text-xs sm:text-sm font-mono font-extrabold bg-fadv-ivory/90 dark:bg-fadv-forest/90 text-neutral-700 dark:text-neutral-200 border border-fadv-sandBorder dark:border-white/15 shadow-sm"
     >
-      v1.9.0
+      v1.9.1
     </span>
   </div>
 
@@ -2051,7 +2144,7 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
   </div>
 
   <script>
-    const APP_VERSION = '1.9.0';
+    const APP_VERSION = '1.9.1';
     const MIN_UPDATE_DURATION_MS = 5000;
     let isDarkMode = false;
 
@@ -2061,7 +2154,6 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
     let activeBlurStyle = 'satin';        // 'satin' | 'liquid' | 'bokeh'
     let autoUpdateEnabled = false;        // false by default
 
-    // Store last calculated target Date object so switching formats updates it live
     let lastCalculatedTargetDateObj = null;
 
     // Minimum Window Dimensions for Corner Mode
@@ -2102,7 +2194,6 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
       wrapperEl.style.transform = '';
       wrapperEl.style.transformOrigin = 'center center';
 
-      // Always reset Standard Calculator buttons to their original default size first
       mathKeys.forEach(btn => {
         btn.style.height = '';
       });
@@ -2110,7 +2201,7 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
       const vw = window.innerWidth;
       const vh = window.innerHeight;
       const availW = Math.max(320, mainEl.clientWidth - 16);
-      const availH = Math.max(300, mainEl.clientHeight - 12);
+      const availH = Math.max(300, mainEl.clientHeight - 10);
 
       // Standard Calculator Dynamic Button Height Expansion (up to MAX +30%):
       // ONLY in resized smaller/narrow windows (vw < 768) where the other two tabs stack vertically!
@@ -2130,29 +2221,23 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
         }
       }
 
-      if (vw <= 640) {
-        const natH = activePanel.offsetHeight || 1;
-        mainEl.style.overflowY = natH > availH ? 'auto' : 'hidden';
-        mainEl.style.alignItems = natH <= availH ? 'center' : 'flex-start';
-      } else {
-        const natW = activePanel.offsetWidth || 1;
-        const natH = activePanel.offsetHeight || 1;
-        const rawScale = Math.min(1, availW / natW, availH / natH);
+      const natW = activePanel.offsetWidth || 1;
+      const natH = activePanel.offsetHeight || 1;
+      const rawScale = Math.min(1, availW / natW, availH / natH);
 
-        if (rawScale >= 0.88) {
-          mainEl.style.overflowY = 'hidden';
-          mainEl.style.alignItems = 'center';
-          if (rawScale < 0.995) {
-            wrapperEl.style.transform = `scale(${rawScale.toFixed(3)})`;
-          }
-        } else {
-          const cappedScale = Math.max(0.88, Math.min(1, availW / natW));
-          mainEl.style.overflowY = 'auto';
-          mainEl.style.alignItems = (natH * cappedScale <= availH) ? 'center' : 'flex-start';
-          if (cappedScale < 0.995) {
-            wrapperEl.style.transformOrigin = 'top center';
-            wrapperEl.style.transform = `scale(${cappedScale.toFixed(3)})`;
-          }
+      if (rawScale >= 0.84) {
+        mainEl.style.overflowY = 'hidden';
+        mainEl.style.alignItems = 'center';
+        if (rawScale < 0.995) {
+          wrapperEl.style.transform = `scale(${rawScale.toFixed(3)})`;
+        }
+      } else {
+        const cappedScale = Math.max(0.84, Math.min(1, availW / natW));
+        mainEl.style.overflowY = 'auto';
+        mainEl.style.alignItems = (natH * cappedScale <= availH) ? 'center' : 'flex-start';
+        if (cappedScale < 0.995) {
+          wrapperEl.style.transformOrigin = 'top center';
+          wrapperEl.style.transform = `scale(${cappedScale.toFixed(3)})`;
         }
       }
 
@@ -2188,10 +2273,6 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
 
     // ============================================================================
     // REALISTIC, PROPORTION-LOCKED SPRING GLIDE OF "FA Calculator" TO HEADER!
-    // - No unnatural rubber squash/stretch (aspect ratio stays 100% locked).
-    // - No mid-flight DOM display:none mutation that causes layout jumps.
-    // - Uses a natural 3px anticipation dip followed by a smooth spring flight
-    //   with a subtle 3.5px physical settle into #mainHeaderTitle.
     // ============================================================================
     function runSplashToHeaderTransition() {
       const splash = document.getElementById('launchSplashOverlay');
@@ -2205,7 +2286,6 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
 
       headerTitle.style.opacity = '0';
 
-      // At t = 1.85s, "FirstAdvantage" has completed morphing into "FA Calculator"
       setTimeout(() => {
         if (splash.classList.contains('updating-mode')) {
           headerTitle.style.opacity = '1';
@@ -2216,8 +2296,6 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
           return;
         }
 
-        // Measure the exact visible span from the left of 'F' to the right of 'Calculator'
-        // WITHOUT mutating display:none on children, so there is zero layout jump!
         const charF = splashTitle.querySelector('.morph-char-f');
         const expCalc = splashTitle.querySelector('.morph-expand-calc');
         const hRect = headerTitle.getBoundingClientRect();
@@ -2239,10 +2317,6 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
           splashTitle.style.transformOrigin = 'center center';
 
           if (typeof splashTitle.animate === 'function') {
-            // Realistic, aspect-locked physical motion:
-            // 1. Gentle 2.5px downward anticipation dip before lift-off (offset 0.10)
-            // 2. Smooth flight upward with a subtle 3.2px natural spring overshoot (offset 0.76)
-            // 3. Soft 1px cushion rebound (offset 0.90) into exact resting spot (offset 1.0)
             const glideAnim = splashTitle.animate([
               { transform: 'translate3d(0px, 0px, 0) scale(1)', offset: 0, easing: 'cubic-bezier(0.4, 0, 0.6, 1)' },
               { transform: 'translate3d(0px, 2.5px, 0) scale(0.985)', offset: 0.11, easing: 'cubic-bezier(0.22, 1, 0.36, 1)' },
@@ -2263,7 +2337,6 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
           }
         }
 
-        // Unblur the calculator UI in sync with the glide
         blurStages.forEach(el => {
           el.classList.add('app-ui-unblurring');
         });
@@ -2358,9 +2431,7 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
     function parseDateByActiveFormat(rawStr, fmt = activeDateFormat) {
       if (!rawStr) return null;
       const clean = rawStr.trim();
-      const sep = getFormatSeparator(fmt);
 
-      // Also accept universal ISO or slash/dash pasted dates and interpret according to fmt
       let m = 0, d = 0, y = 0;
 
       if (fmt === 'YYYY-MM-DD') {
@@ -2376,7 +2447,6 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
         m = parseInt(match[2], 10);
         y = parseInt(match[3], 10);
       } else {
-        // MM/DD/YYYY or MM-DD-YYYY
         const match = clean.match(/^(\d{1,2})[-/.](\d{1,2})[-/.](\d{4})$/);
         if (!match) return null;
         m = parseInt(match[1], 10);
@@ -2399,7 +2469,6 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
       const clean = rawStr.trim();
       const sep = getFormatSeparator(activeDateFormat);
 
-      // Check if pasted string is YYYY-MM-DD
       const isoMatch = clean.match(/^(\d{4})[-/.](\d{1,2})[-/.](\d{1,2})$/);
       if (isoMatch) {
         const y = parseInt(isoMatch[1], 10);
@@ -2432,12 +2501,6 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
       return clean;
     }
 
-    // ============================================================================
-    // SMART DURATION NUMBER FORMATTING:
-    // - Default / zero -> "0"
-    // - Single non-zero digit (1..9) -> "01".."09" (e.g. 9 stays "09")
-    // - Two or more digits (>= 10) -> strips leading zeros (e.g. "11", "534")
-    // ============================================================================
     function formatDurationValueString(numVal) {
       const n = Math.max(0, parseInt(numVal, 10) || 0);
       if (n === 0) return '0';
@@ -2588,8 +2651,8 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
       document.querySelectorAll('.settings-blur-opt').forEach(btn => {
         const isSel = btn.getAttribute('data-blur-opt') === activeBlurStyle;
         btn.className = isSel
-          ? 'settings-blur-opt spring-btn py-1.5 px-2 rounded-xl text-xs font-extrabold bg-fadv-green text-white shadow-xs cursor-pointer'
-          : 'settings-blur-opt spring-btn py-1.5 px-2 rounded-xl text-xs font-bold text-neutral-700 dark:text-neutral-200 hover:bg-white/50 dark:hover:bg-white/5 cursor-pointer';
+          ? 'settings-blur-opt spring-btn py-1.5 px-2 rounded-lg text-xs font-extrabold bg-fadv-green text-white shadow-xs cursor-pointer'
+          : 'settings-blur-opt spring-btn py-1.5 px-2 rounded-lg text-xs font-bold text-neutral-700 dark:text-neutral-200 hover:bg-black/5 dark:hover:bg-white/5 cursor-pointer';
       });
     }
 
@@ -2597,23 +2660,15 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
       document.querySelectorAll('.settings-tab-opt').forEach(btn => {
         const isSel = parseInt(btn.getAttribute('data-default-tab'), 10) === defaultStartupTab;
         btn.className = isSel
-          ? 'settings-tab-opt spring-btn py-1.5 px-2 rounded-xl text-xs font-extrabold bg-fadv-green text-white shadow-xs cursor-pointer'
-          : 'settings-tab-opt spring-btn py-1.5 px-2 rounded-xl text-xs font-bold text-neutral-700 dark:text-neutral-200 hover:bg-white/50 dark:hover:bg-white/5 cursor-pointer';
+          ? 'settings-tab-opt spring-btn py-1.5 px-2 rounded-lg text-xs font-extrabold bg-fadv-green text-white shadow-xs cursor-pointer'
+          : 'settings-tab-opt spring-btn py-1.5 px-2 rounded-lg text-xs font-bold text-neutral-700 dark:text-neutral-200 hover:bg-black/5 dark:hover:bg-white/5 cursor-pointer';
       });
     }
 
     function applyAutoUpdateSettingsUI() {
       const btn = document.getElementById('autoUpdateToggleBtn');
-      const knob = document.getElementById('autoUpdateToggleKnob');
-      if (!btn || !knob) return;
+      if (!btn) return;
       btn.setAttribute('aria-checked', String(autoUpdateEnabled));
-      if (autoUpdateEnabled) {
-        btn.className = 'spring-btn relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent bg-fadv-green transition-colors duration-200 focus:outline-none';
-        knob.style.transform = 'translateX(20px)';
-      } else {
-        btn.className = 'spring-btn relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent bg-neutral-300 dark:bg-white/20 transition-colors duration-200 focus:outline-none';
-        knob.style.transform = 'translateX(0px)';
-      }
     }
 
     function applyDateFormatAcrossCalculator(previousFormat) {
@@ -2654,10 +2709,10 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
         const fmt = btn.getAttribute('data-date-fmt');
         const isSel = fmt === activeDateFormat;
         const isWide = fmt === 'MM-DD-YYYY';
-        btn.className = `${isWide ? 'col-span-2 ' : ''}settings-fmt-opt spring-btn py-2 px-2.5 rounded-xl font-mono text-xs ${
+        btn.className = `${isWide ? 'col-span-2 ' : ''}settings-fmt-opt spring-btn py-1.5 px-2.5 rounded-xl font-mono text-xs ${
           isSel
             ? 'font-extrabold bg-fadv-green text-white shadow-xs'
-            : 'font-bold bg-[#F3ECE4] dark:bg-fadv-dark text-neutral-700 dark:text-neutral-200 border border-fadv-sandBorder dark:border-white/10'
+            : 'font-bold bg-white/80 dark:bg-fadv-forest text-neutral-700 dark:text-neutral-200 border border-fadv-sandBorder dark:border-white/10'
         } flex items-center justify-between cursor-pointer`;
       });
     }
@@ -2679,8 +2734,8 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
       if (left + popW > window.innerWidth - 12) left = window.innerWidth - popW - 12;
 
       let top = rect.bottom + 8;
-      if (top + 420 > window.innerHeight - 12) {
-        top = Math.max(12, window.innerHeight - 430);
+      if (top + 430 > window.innerHeight - 12) {
+        top = Math.max(12, window.innerHeight - 440);
       }
 
       pop.style.left = `${left}px`;
@@ -2748,14 +2803,17 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
           const i = parseInt(btn.getAttribute('data-hist-use'), 10);
           const entry = items[i];
           if (entry) {
-            applyDateAsNewStartDate(entry.result);
+            applyDateAsNewStartDate(entry.result, false);
             closeHistoryPopover();
           }
         });
       });
     }
 
-    function applyDateAsNewStartDate(dateStr) {
+    // ============================================================================
+    // VISUAL FLIGHT TRANSFER ANIMATION WHEN CLICKING "USE AS START DATE"
+    // ============================================================================
+    function applyDateAsNewStartDate(dateStr, animateFlight = true) {
       const startInput = document.getElementById('startDateInput');
       const startMsg = document.getElementById('startValidationMsg');
       const durationYears = document.getElementById('durationYears');
@@ -2764,12 +2822,74 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
       const targetDateEl = document.getElementById('targetCalculatedDate');
       const targetDayEl = document.getElementById('targetDayOfWeek');
 
+      if (document.activeElement && typeof document.activeElement.blur === 'function') {
+        document.activeElement.blur();
+      }
+
+      if (animateFlight && targetDateEl && startInput && typeof document.body.animate === 'function') {
+        const fromRect = targetDateEl.getBoundingClientRect();
+        const toRect = startInput.getBoundingClientRect();
+
+        // Create flying badge clone starting at the exact position of Calculated Result Date
+        const flyer = document.createElement('div');
+        flyer.className = 'flying-date-badge';
+        flyer.textContent = dateStr;
+        flyer.style.fontSize = `${Math.max(16, Math.min(28, fromRect.height * 0.72))}px`;
+        flyer.style.left = `${fromRect.left}px`;
+        flyer.style.top = `${fromRect.top + (fromRect.height - 36) / 2}px`;
+        document.body.appendChild(flyer);
+
+        const flyerRect = flyer.getBoundingClientRect();
+        const startX = flyerRect.left + flyerRect.width / 2;
+        const startY = flyerRect.top + flyerRect.height / 2;
+        const endX = toRect.left + Math.min(toRect.width / 2, 110);
+        const endY = toRect.top + toRect.height / 2;
+
+        const dx = endX - startX;
+        const dy = endY - startY;
+
+        // Immediately clear result box and reset durations as the date lifts off!
+        triggerDisappearAnimation(durationYears);
+        triggerDisappearAnimation(durationMonths);
+        triggerDisappearAnimation(durationDays);
+        durationYears.value = '0';
+        durationMonths.value = '0';
+        durationDays.value = '0';
+        lastCalculatedTargetDateObj = null;
+        targetDateEl.textContent = getEmptyResultMask(activeDateFormat);
+        targetDayEl.textContent = '';
+        targetDayEl.classList.add('hidden');
+
+        // Animate the flying date along a physical upward curve right into Start Date input
+        const flight = flyer.animate([
+          { transform: 'translate3d(0px, 0px, 0) scale(1)', opacity: 1, offset: 0 },
+          { transform: `translate3d(${(dx * 0.45 - 14).toFixed(1)}px, ${(dy * 0.55 - 18).toFixed(1)}px, 0) scale(1.08)`, opacity: 1, offset: 0.5 },
+          { transform: `translate3d(${dx.toFixed(1)}px, ${dy.toFixed(1)}px, 0) scale(0.92)`, opacity: 0.95, offset: 0.92 },
+          { transform: `translate3d(${dx.toFixed(1)}px, ${dy.toFixed(1)}px, 0) scale(0.85)`, opacity: 0, offset: 1 }
+        ], {
+          duration: 520,
+          easing: 'cubic-bezier(0.22, 1, 0.36, 1)',
+          fill: 'forwards'
+        });
+
+        flight.onfinish = () => {
+          flyer.remove();
+          startInput.value = dateStr;
+          validateDateField(startInput, startMsg, 'Type or paste with Ctrl+V');
+          startInput.classList.remove('animate-input-arrival');
+          void startInput.offsetWidth;
+          startInput.classList.add('animate-input-arrival');
+          showSuccessToast(`Start Date set to ${dateStr}`);
+        };
+        return;
+      }
+
+      // Fallback instant transfer
       triggerDisappearAnimation(startInput);
       triggerDisappearAnimation(durationYears);
       triggerDisappearAnimation(durationMonths);
       triggerDisappearAnimation(durationDays);
       triggerDisappearAnimation(targetDateEl);
-      triggerDisappearAnimation(targetDayEl);
 
       startInput.value = dateStr;
       validateDateField(startInput, startMsg, 'Type or paste with Ctrl+V');
@@ -2779,9 +2899,7 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
       lastCalculatedTargetDateObj = null;
       targetDateEl.textContent = getEmptyResultMask(activeDateFormat);
       targetDayEl.textContent = '';
-      if (document.activeElement && typeof document.activeElement.blur === 'function') {
-        document.activeElement.blur();
-      }
+      targetDayEl.classList.add('hidden');
       showSuccessToast(`Start Date set to ${dateStr}`);
     }
 
@@ -2856,7 +2974,6 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
         s1Invalid = mRes.invalid;
         s2Invalid = yRes.invalid;
       } else {
-        // MM/DD/YYYY or MM-DD-YYYY
         const mRes = checkMonthSegInvalid(s0, s1 !== null);
         const yRes = s2 !== null ? checkYearSegInvalid(s2) : { invalid: false, val: null };
         const dRes = s1 !== null ? checkDaySegInvalid(s1, s2 !== null, mRes.val, yRes.val, s2 !== null && s2.length === 4 && !yRes.invalid) : { invalid: false, val: null };
@@ -2944,7 +3061,6 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
           return;
         }
 
-        // 2-2-4 formats (MM/DD/YYYY, DD/MM/YYYY, DD-MM-YYYY, MM-DD-YYYY)
         if (/^\d[/-]$/.test(raw)) {
           e.target.value = '0' + raw[0] + sep;
           validateDateField(inputEl, msgEl, defaultText);
@@ -3061,8 +3177,6 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
         settingsVerStatus.className = 'block text-xs sm:text-sm font-mono font-extrabold text-fadv-green dark:text-fadv-lime truncate mt-0.5';
       }
 
-      // If the user has enabled Auto-Update in Settings, automatically launch the 5-second
-      // installation screen so the user sees the update being installed and then restart!
       if (autoUpdateEnabled) {
         setTimeout(() => {
           triggerAppUpdateAndRelaunch();
@@ -3198,7 +3312,6 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
         navigator.serviceWorker.controller.postMessage({ type: 'APPLY_UPDATE' });
       }
 
-      // Guarantee the updating animation screen stays visible for AT LEAST 5 seconds (5000ms)
       const elapsed = Date.now() - updateStartTime;
       const remainingWait = Math.max(0, MIN_UPDATE_DURATION_MS - elapsed);
 
@@ -3867,7 +3980,6 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
         });
       }
 
-      // Bind Settings Gear Button & Close Button
       document.getElementById('settingsToggleBtn').addEventListener('click', (e) => {
         openSettingsPopover(e.currentTarget);
       });
@@ -3875,7 +3987,6 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
         closeSettingsPopover();
       });
 
-      // Bind Settings: Default Tab Selection
       document.querySelectorAll('.settings-tab-opt').forEach(btn => {
         btn.addEventListener('click', () => {
           const newDef = parseInt(btn.getAttribute('data-default-tab'), 10);
@@ -3890,7 +4001,6 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
         });
       });
 
-      // Bind Settings: Date Format Selection
       document.querySelectorAll('.settings-fmt-opt').forEach(btn => {
         btn.addEventListener('click', () => {
           const prevFmt = activeDateFormat;
@@ -3905,7 +4015,6 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
         });
       });
 
-      // Bind Settings: Blur Style Selection
       document.querySelectorAll('.settings-blur-opt').forEach(btn => {
         btn.addEventListener('click', () => {
           const style = btn.getAttribute('data-blur-opt');
@@ -3920,7 +4029,6 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
         });
       });
 
-      // Bind Settings: Auto-Update Toggle
       document.getElementById('autoUpdateToggleBtn').addEventListener('click', () => {
         autoUpdateEnabled = !autoUpdateEnabled;
         try {
@@ -3951,13 +4059,11 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
       bindSmartDateInput(toInput, toMsg, 'Default: Today\'s Date');
       bindSmartDateInput(startInput, startMsg, 'Type or paste with Ctrl+V');
 
-      // Initialize To Date & Format Badges with the active date format
       toInput.value = getTodayFormatted();
       applyDateFormatAcrossCalculator(null);
       toMsg.className = 'text-xs sm:text-sm font-semibold text-fadv-green dark:text-fadv-lime';
       toMsg.textContent = 'Default: Today\'s Date';
 
-      // Bind Custom Rounded Stepper Buttons for Years, Months, Days
       document.querySelectorAll('[data-step-target]').forEach(btn => {
         btn.addEventListener('click', () => {
           const targetId = btn.getAttribute('data-step-target');
@@ -3966,7 +4072,6 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
         });
       });
 
-      // Bind Mouse Scroll Wheel to Years, Months, Days boxes
       document.querySelectorAll('.duration-wheel-box').forEach(box => {
         box.addEventListener('wheel', (e) => {
           e.preventDefault();
@@ -3978,7 +4083,6 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
         }, { passive: false });
       });
 
-      // Bind History Popover Buttons
       document.getElementById('historyBtnDuration').addEventListener('click', (e) => {
         openHistoryPopover(e.currentTarget);
       });
@@ -4208,7 +4312,6 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
         triggerDisappearAnimation(durationMonths);
         triggerDisappearAnimation(durationDays);
         triggerDisappearAnimation(document.getElementById('targetCalculatedDate'));
-        triggerDisappearAnimation(document.getElementById('targetDayOfWeek'));
 
         startInput.value = '';
         updateDateMirrorOverlay(startInput);
@@ -4219,7 +4322,9 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
         startMsg.className = 'text-xs sm:text-sm font-semibold text-neutral-500 dark:text-neutral-400';
         startMsg.textContent = 'Type or paste with Ctrl+V';
         document.getElementById('targetCalculatedDate').textContent = getEmptyResultMask(activeDateFormat);
-        document.getElementById('targetDayOfWeek').textContent = '';
+        const dayEl = document.getElementById('targetDayOfWeek');
+        dayEl.textContent = '';
+        dayEl.classList.add('hidden');
         startInput.focus();
       });
 
@@ -4229,7 +4334,7 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
           showErrorToast('Calculate a Target Date first');
           return;
         }
-        applyDateAsNewStartDate(val);
+        applyDateAsNewStartDate(val, true);
       });
 
       document.getElementById('copyFromInputBtn').addEventListener('click', () => {
@@ -4285,7 +4390,9 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
         const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
         document.getElementById('targetCalculatedDate').textContent = targetFormatted;
-        document.getElementById('targetDayOfWeek').textContent = dayNames[targetDate.getDay()];
+        const dayEl = document.getElementById('targetDayOfWeek');
+        dayEl.textContent = dayNames[targetDate.getDay()];
+        dayEl.classList.remove('hidden');
 
         const sign = durationOperation === 'sub' ? '−' : '+';
         const parts = [];
@@ -4296,6 +4403,7 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
         addTabHistoryEntry(0, `${startParsed.formatted} ${sign} (${durSummary})`, targetFormatted);
 
         triggerResultAnimation(document.getElementById('durationResultBox'));
+        fitActivePanelToViewport();
       });
 
       document.getElementById('calculateGapBtn').addEventListener('click', () => {
@@ -4331,6 +4439,7 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
         addTabHistoryEntry(1, `${fromParsed.formatted} → ${toParsed.formatted}`, fullResult);
 
         triggerResultAnimation(document.getElementById('gapResultBox'));
+        fitActivePanelToViewport();
       });
 
       // Open on the user's configured Default Startup Tab (defaults to 0 = ± Duration)
