@@ -2045,7 +2045,7 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
           <div class="min-w-0">
             <span class="block text-[10px] font-bold uppercase tracking-wider text-neutral-500 dark:text-neutral-400">Current Version</span>
             <span id="settingsVersionStatus" class="block text-[11px] font-semibold text-neutral-600 dark:text-neutral-300 truncate mt-0.5">
-              v1.9.3
+              v1.9.4
             </span>
           </div>
           <div class="flex items-center gap-1.5 shrink-0">
@@ -2171,7 +2171,7 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
       id="appVersionBadge" 
       class="px-2.5 py-1 rounded-lg text-xs sm:text-sm font-mono font-extrabold bg-fadv-ivory/90 dark:bg-fadv-forest/90 text-neutral-700 dark:text-neutral-200 border border-fadv-sandBorder dark:border-white/15 shadow-sm"
     >
-      v1.9.3
+      v1.9.4
     </span>
   </div>
 
@@ -2214,7 +2214,7 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
   </div>
 
   <script>
-    const APP_VERSION = '1.9.3';
+    const APP_VERSION = '1.9.4';
     const MIN_UPDATE_DURATION_MS = 5000;
     let isDarkMode = false;
 
@@ -2922,36 +2922,38 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
       if (animateFlight && targetDateEl && startInput && typeof document.body.animate === 'function') {
         const fromRect = targetDateEl.getBoundingClientRect();
         const toRect = startInput.getBoundingClientRect();
+        const inputCompStyle = window.getComputedStyle(startInput);
+        const targetFontSize = parseFloat(inputCompStyle.fontSize) || 24;
+        const targetPadLeft = parseFloat(inputCompStyle.paddingLeft) || 14;
 
-        // Create flying badge clone starting at the exact position of Calculated Result Date
+        // Create flying text clone matching the exact typography of Start Date so landing is 100% seamless
         const flyer = document.createElement('div');
         flyer.className = 'flying-date-badge';
         flyer.textContent = dateStr;
-        flyer.style.fontSize = `${Math.max(16, Math.min(28, fromRect.height * 0.72))}px`;
+        flyer.style.fontSize = `${targetFontSize}px`;
         flyer.style.left = `${fromRect.left}px`;
-        flyer.style.top = `${fromRect.top + (fromRect.height - 36) / 2}px`;
+        flyer.style.top = `${fromRect.top + (fromRect.height - targetFontSize * 1.35) / 2}px`;
         document.body.appendChild(flyer);
 
         const flyerRect = flyer.getBoundingClientRect();
-        const startX = flyerRect.left + flyerRect.width / 2;
-        const startY = flyerRect.top + flyerRect.height / 2;
-        const endX = toRect.left + Math.min(toRect.width / 2, 110);
-        const endY = toRect.top + toRect.height / 2;
+        // Land at the exact left-aligned text position inside #startDateInput
+        const endLeft = toRect.left + targetPadLeft - 10;
+        const endTop = toRect.top + (toRect.height - flyerRect.height) / 2;
 
-        const dx = endX - startX;
-        const dy = endY - startY;
+        const dx = endLeft - flyerRect.left;
+        const dy = endTop - flyerRect.top;
 
-        // Immediately clear the old Start Date AND reset Years/Months/Days to 0 at the exact same moment,
-        // so the Start Date box is completely blank and ready for the flying date to settle into!
-        triggerDisappearAnimation(startInput);
-        triggerDisappearAnimation(durationYears);
-        triggerDisappearAnimation(durationMonths);
-        triggerDisappearAnimation(durationDays);
+        // Immediately clear the old Start Date AND temporarily hide its placeholder ("MM/DD/YYYY")
+        // so the Start Date box is 100% blank while the flying date travels into it!
+        startInput.setAttribute('placeholder', '');
         startInput.value = '';
         updateDateMirrorOverlay(startInput);
         startMsg.className = 'text-xs sm:text-sm font-semibold text-neutral-500 dark:text-neutral-400';
         startMsg.textContent = 'Transferring target date...';
 
+        triggerDisappearAnimation(durationYears);
+        triggerDisappearAnimation(durationMonths);
+        triggerDisappearAnimation(durationDays);
         durationYears.value = '0';
         durationMonths.value = '0';
         durationDays.value = '0';
@@ -2960,29 +2962,32 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
         targetDayEl.textContent = '';
         targetDayEl.classList.add('hidden');
 
-        // Animate the flying date along a smooth upward curve into the blank Start Date field
+        // Animate the flying date along a smooth upward curve directly onto the blank Start Date text slot
         const flight = flyer.animate([
-          { transform: 'translate3d(0px, 0px, 0) scale(1)', opacity: 1, offset: 0 },
-          { transform: `translate3d(${(dx * 0.45 - 12).toFixed(1)}px, ${(dy * 0.55 - 16).toFixed(1)}px, 0) scale(1.06)`, opacity: 1, offset: 0.52 },
-          { transform: `translate3d(${dx.toFixed(1)}px, ${dy.toFixed(1)}px, 0) scale(0.98)`, opacity: 1, offset: 0.92 },
-          { transform: `translate3d(${dx.toFixed(1)}px, ${dy.toFixed(1)}px, 0) scale(0.95)`, opacity: 0, offset: 1 }
+          { transform: 'translate3d(0px, 0px, 0) scale(1.08)', opacity: 1, offset: 0 },
+          { transform: `translate3d(${(dx * 0.45).toFixed(1)}px, ${(dy * 0.55 - 14).toFixed(1)}px, 0) scale(1.05)`, opacity: 1, offset: 0.52 },
+          { transform: `translate3d(${dx.toFixed(1)}px, ${dy.toFixed(1)}px, 0) scale(1)`, opacity: 1, offset: 0.90 },
+          { transform: `translate3d(${dx.toFixed(1)}px, ${dy.toFixed(1)}px, 0) scale(1)`, opacity: 0, offset: 1 }
         ], {
           duration: 460,
           easing: 'cubic-bezier(0.22, 1, 0.36, 1)',
           fill: 'forwards'
         });
 
+        // Populate the blank Start Date box right as the flyer reaches 90% (exact landing position) and restore placeholder
         setTimeout(() => {
           startInput.value = dateStr;
+          startInput.setAttribute('placeholder', activeDateFormat);
           validateDateField(startInput, startMsg, 'Type or paste with Ctrl+V');
           startInput.classList.remove('animate-input-arrival');
           void startInput.offsetWidth;
           startInput.classList.add('animate-input-arrival');
           showSuccessToast(`Start Date set to ${dateStr}`);
-        }, 420);
+        }, 410);
 
         flight.onfinish = () => {
           flyer.remove();
+          startInput.setAttribute('placeholder', activeDateFormat);
         };
         return;
       }
@@ -3568,6 +3573,23 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
         }
       });
 
+      // Mouse wheel scroll on Month button changes month directly without clicking!
+      monthTriggerBtn.addEventListener('wheel', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        closeCalendarSubMenus();
+        const dir = e.deltaY < 0 ? -1 : 1;
+        calViewMonth += dir;
+        if (calViewMonth < 0) {
+          calViewMonth = 11;
+          calViewYear = Math.max(1800, calViewYear - 1);
+        } else if (calViewMonth > 11) {
+          calViewMonth = 0;
+          calViewYear = Math.min(2200, calViewYear + 1);
+        }
+        renderCalendarDays();
+      }, { passive: false });
+
       yearTriggerBtn.addEventListener('click', (e) => {
         e.stopPropagation();
         const isHidden = yearMenu.classList.contains('hidden');
@@ -3580,6 +3602,16 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
           yearMenu.classList.add('animate-dropdown-in');
         }
       });
+
+      // Mouse wheel scroll on Year button changes year directly without clicking!
+      yearTriggerBtn.addEventListener('wheel', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        closeCalendarSubMenus();
+        const dir = e.deltaY < 0 ? 1 : -1;
+        calViewYear = Math.max(1800, Math.min(2200, calViewYear + dir));
+        renderCalendarDays();
+      }, { passive: false });
 
       prevBtn.addEventListener('click', () => {
         closeCalendarSubMenus();
