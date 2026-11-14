@@ -564,11 +564,11 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
     }
     .fadv-i-dot {
       position: absolute;
-      top: 0.08em;
+      top: 0.205em;
       left: 50%;
       transform: translateX(-50%);
-      width: 0.23em;
-      height: 0.23em;
+      width: 0.215em;
+      height: 0.215em;
       border-radius: 9999px;
       background-color: #009B4D;
     }
@@ -876,9 +876,9 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
       box-shadow: 0 32px 64px -12px rgba(0, 0, 0, 0.72), 0 0 28px -8px rgba(0, 166, 81, 0.15);
     }
 
-    /* ==============================================*/
-    /* PRECISION AUTO-UPDATE TOGGLE SWITCH GEOMETRY  */
-    /* ==============================================*/
+    /* ============================================================================ */
+    /* PRECISION AUTO-UPDATE TOGGLE SWITCH GEOMETRY (NEVER LEAKS OR CENTERS!)       */
+    /* ============================================================================ */
     #autoUpdateToggleBtn {
       width: 46px !important;
       height: 26px !important;
@@ -2045,7 +2045,7 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
           <div class="min-w-0">
             <span class="block text-[10px] font-bold uppercase tracking-wider text-neutral-500 dark:text-neutral-400">Current Version</span>
             <span id="settingsVersionStatus" class="block text-[11px] font-semibold text-neutral-600 dark:text-neutral-300 truncate mt-0.5">
-              v1.9.4
+              v1.9.5
             </span>
           </div>
           <div class="flex items-center gap-1.5 shrink-0">
@@ -2171,7 +2171,7 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
       id="appVersionBadge" 
       class="px-2.5 py-1 rounded-lg text-xs sm:text-sm font-mono font-extrabold bg-fadv-ivory/90 dark:bg-fadv-forest/90 text-neutral-700 dark:text-neutral-200 border border-fadv-sandBorder dark:border-white/15 shadow-sm"
     >
-      v1.9.4
+      v1.9.5
     </span>
   </div>
 
@@ -2214,7 +2214,7 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
   </div>
 
   <script>
-    const APP_VERSION = '1.9.4';
+    const APP_VERSION = '1.9.5';
     const MIN_UPDATE_DURATION_MS = 5000;
     let isDarkMode = false;
 
@@ -2557,12 +2557,70 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
       return { m, d, y, formatted, date };
     }
 
+    const PASTED_MONTH_MAP = {
+      jan: 1, january: 1,
+      feb: 2, february: 2,
+      mar: 3, march: 3,
+      apr: 4, april: 4,
+      may: 5,
+      jun: 6, june: 6,
+      jul: 7, july: 7,
+      aug: 8, august: 8,
+      sep: 9, sept: 9, september: 9,
+      oct: 10, october: 10,
+      nov: 11, november: 11,
+      dec: 12, december: 12
+    };
+
     function normalizePastedDate(rawStr) {
       if (!rawStr) return '';
-      const clean = rawStr.trim();
+      const clean = rawStr.trim().replace(/\s+/g, ' ');
       const sep = getFormatSeparator(activeDateFormat);
 
-      const isoMatch = clean.match(/^(\d{4})[-/.](\d{1,2})[-/.](\d{1,2})$/);
+      // 1. Written month formats (O(1) lookup, <0.02ms):
+      //    e.g. "1 march 2020", "1st March 2020", "1 mar 2020", "1st Mar 2020",
+      //         "March 1, 2020", "Mar 1st, 2020", "01-Mar-2020", "2020 March 1st"
+      const dmyAlpha = clean.match(/^(\d{1,2})(?:st|nd|rd|th)?[\s,\-/.]+([a-zA-Z]+)[\s,\-/.]+(\d{4})$/i);
+      if (dmyAlpha) {
+        const d = parseInt(dmyAlpha[1], 10);
+        const m = PASTED_MONTH_MAP[dmyAlpha[2].toLowerCase()];
+        const y = parseInt(dmyAlpha[3], 10);
+        if (m && d >= 1 && d <= 31 && y >= 1000 && y <= 9999) {
+          const dt = new Date(y, m - 1, d);
+          if (dt.getFullYear() === y && dt.getMonth() === m - 1 && dt.getDate() === d) {
+            return formatDateByPattern(dt, activeDateFormat);
+          }
+        }
+      }
+
+      const mdyAlpha = clean.match(/^([a-zA-Z]+)[\s,\-/.]+(\d{1,2})(?:st|nd|rd|th)?(?:[\s,\-/.]+)(\d{4})$/i);
+      if (mdyAlpha) {
+        const m = PASTED_MONTH_MAP[mdyAlpha[1].toLowerCase()];
+        const d = parseInt(mdyAlpha[2], 10);
+        const y = parseInt(mdyAlpha[3], 10);
+        if (m && d >= 1 && d <= 31 && y >= 1000 && y <= 9999) {
+          const dt = new Date(y, m - 1, d);
+          if (dt.getFullYear() === y && dt.getMonth() === m - 1 && dt.getDate() === d) {
+            return formatDateByPattern(dt, activeDateFormat);
+          }
+        }
+      }
+
+      const ymdAlpha = clean.match(/^(\d{4})[\s,\-/.]+([a-zA-Z]+)[\s,\-/.]+(\d{1,2})(?:st|nd|rd|th)?$/i);
+      if (ymdAlpha) {
+        const y = parseInt(ymdAlpha[1], 10);
+        const m = PASTED_MONTH_MAP[ymdAlpha[2].toLowerCase()];
+        const d = parseInt(ymdAlpha[3], 10);
+        if (m && d >= 1 && d <= 31 && y >= 1000 && y <= 9999) {
+          const dt = new Date(y, m - 1, d);
+          if (dt.getFullYear() === y && dt.getMonth() === m - 1 && dt.getDate() === d) {
+            return formatDateByPattern(dt, activeDateFormat);
+          }
+        }
+      }
+
+      // 2. ISO / Year-first numeric ("2020-03-01", "2020.3.1", "2020/03/01")
+      const isoMatch = clean.match(/^(\d{4})[-/.\s](\d{1,2})[-/.\s](\d{1,2})$/);
       if (isoMatch) {
         const y = parseInt(isoMatch[1], 10);
         const m = parseInt(isoMatch[2], 10);
@@ -2572,8 +2630,29 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
         }
       }
 
-      const partMatch = clean.match(/^(\d{1,2})[-/.](\d{1,2})[-/.](\d{4})$/);
+      // 3. Numeric with slashes, hyphens, dots, or spaces ("3-1-2020", "03-01-2020", "03.01.2020", "3/1/2020")
+      const partMatch = clean.match(/^(\d{1,2})[-/.\s](\d{1,2})[-/.\s](\d{4})$/);
       if (partMatch) {
+        const n1 = parseInt(partMatch[1], 10);
+        const n2 = parseInt(partMatch[2], 10);
+        const y = parseInt(partMatch[3], 10);
+        let m, d;
+        const isDayFirstFormat = activeDateFormat.startsWith('DD');
+        if (n1 > 12 && n2 <= 12) {
+          d = n1; m = n2;
+        } else if (n2 > 12 && n1 <= 12) {
+          m = n1; d = n2;
+        } else if (isDayFirstFormat) {
+          d = n1; m = n2;
+        } else {
+          m = n1; d = n2;
+        }
+        if (m >= 1 && m <= 12 && d >= 1 && d <= 31) {
+          const dt = new Date(y, m - 1, d);
+          if (dt.getFullYear() === y && dt.getMonth() === m - 1 && dt.getDate() === d) {
+            return formatDateByPattern(dt, activeDateFormat);
+          }
+        }
         const p1 = String(partMatch[1]).padStart(2, '0');
         const p2 = String(partMatch[2]).padStart(2, '0');
         const p3 = partMatch[3];
@@ -2583,6 +2662,7 @@ html.dark .dark\:text-white { color: rgb(255, 255, 255); }
         return `${p1}${sep}${p2}${sep}${p3}`;
       }
 
+      // 4. Pure 8-digit string ("03012020" or "20200301")
       const digitsOnly = clean.replace(/\D/g, '');
       if (digitsOnly.length === 8) {
         if (activeDateFormat === 'YYYY-MM-DD') {
